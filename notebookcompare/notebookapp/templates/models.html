@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{{ model.name }}
+
+	{% for model in all_models %}
+
+		<B>{{ model.brand}}</b>  <B>{{ model.name }}</b>  Price: {{ model.price }} €   <a href="/brands/{{ model.name  }}"> Notebook Details </a> 
+		
+		</br>
+
+	{% endfor %}
+
+
+{% endblock %}
+
+

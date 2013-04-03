@@ -2,9 +2,11 @@
 from django.http import HttpResponse
 from django.template import Context
 from django.template.loader import get_template
-from notebookapp.models import Brand
 from django.shortcuts import render_to_response
 
+#imports 
+from notebookapp.models import Brand
+from notebookapp.models import Model
 from django.http import Http404
 # 
 def mainpage(request):
@@ -15,8 +17,6 @@ def mainpage(request):
 def brands(request):
 	param = { 'titlehead' : "List of all Brands"}
 	param['all_brands'] = Brand.objects.all()
-	#output = ', '.join([p.name + ' '+ p.web for p in all_brands])
-	#return HttpResponse(output)
 	return render_to_response('brands.html',param)
 
 
@@ -28,6 +28,12 @@ def brand_detail(request, brand_name):
 	except Brand.DoesNotExist:
        	 raise Http404
     	return render_to_response('detailbrand.html', param)
+
+#lists all the models
+def models(request):
+	param = { 'titlehead' : "List of all Models ordered by Brand"}
+	param['all_models'] = Model.objects.all().order_by('brand')
+	return render_to_response('models.html',param)
 
 
 

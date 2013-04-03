@@ -19,4 +19,5 @@ urlpatterns = patterns('',
     url(r'^$', mainpage, name='home'),
     url(r'^brands/$', brands , name='brands'),
     url(r'^brands/(?P<brand_name>\w+)/$', brand_detail , name='brand detail'),
+    url(r'^models/$', models , name='models'),
 )
