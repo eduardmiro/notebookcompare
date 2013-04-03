@@ -6,7 +6,6 @@ admin.autodiscover()
 
 
 
-
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'notebookcompare.views.home', name='home'),
@@ -19,4 +18,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', mainpage, name='home'),
     url(r'^brands/$', brands , name='brands'),
+    url(r'^brands/(?P<brand_name>\w+)/$', brand_detail , name='brand detail'),
 )
