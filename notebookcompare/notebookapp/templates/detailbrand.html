@@ -4,12 +4,17 @@
 {% block content %}
 
 	
-		
-		<h2>{{ name }}</h2>  <h3>{{ country }}  </h3>
+		<center>
+		{% if pictureurl|length > 0 %}
+			<img src="{{ pictureurl }}"> </img>
+		{% endif %}
+
+		<h2>{{ name }}</h2>  
+		<h3>{{ country }}  </h3>
 		<a href="{{ web }}"> Website </a>
 		
 		</br>
-
+		</center>
 
 
 

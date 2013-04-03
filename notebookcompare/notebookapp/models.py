@@ -11,6 +11,7 @@ class Brand(models.Model):
 	name = models.TextField(max_length=100)
 	country = models.ForeignKey(Country)
 	web = models.TextField(max_length=100)
+	pictureurl = models.TextField(max_length=100)
 	def __unicode__ (self):
 		return self.name
 
@@ -32,5 +33,6 @@ class Model(models.Model):
 	brand = models.ForeignKey(Brand)
 	specification = models.ManyToManyField(Specification)
 	useradd = models.ForeignKey(User)
+	pictureurl = models.TextField(max_length=100)
 	def __unicode__ (self):
 		return self.name

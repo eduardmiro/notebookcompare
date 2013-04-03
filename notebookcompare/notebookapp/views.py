@@ -24,7 +24,7 @@ def brands(request):
 def brand_detail(request, brand_name):
 	try:
 		brand= Brand.objects.get(name=brand_name)
-		param = {'titlehead' : "Brand Details",'name' : brand.name ,'web' : brand.web , 'country' : brand.country}
+		param = {'titlehead' : "Brand Details",'name' : brand.name ,'web' : brand.web , 'country' : brand.country , 'pictureurl' : brand.pictureurl}
 	except Brand.DoesNotExist:
        	 raise Http404
     	return render_to_response('detailbrand.html', param)
