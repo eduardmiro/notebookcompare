@@ -23,7 +23,7 @@ class Specification (models.Model):
 	name = models.TextField(max_length=100)
 	component = models.ForeignKey(Component)
 	def __unicode__ (self):
-		return self.type_specs+" - " +self.name
+		return self.component.name+" - " +self.name
 	
 class Model(models.Model):
 	name = models.TextField(max_length=100)
