@@ -7,6 +7,7 @@ from django.shortcuts import render_to_response
 #imports 
 from notebookapp.models import Brand
 from notebookapp.models import Model
+from notebookapp.models import *
 from django.http import Http404
 # 
 def mainpage(request):
@@ -20,11 +21,15 @@ def brands(request):
 	return render_to_response('brands.html',param)
 
 
-#list the details of a brand
+#Shows the details of a brand
 def brand_detail(request, brand_name):
 	try:
 		brand= Brand.objects.get(name=brand_name)
-		param = {'titlehead' : "Brand Details",'name' : brand.name ,'web' : brand.web , 'country' : brand.country , 'pictureurl' : brand.pictureurl}
+		param = { 'titlehead' : "Brand Details",
+			  'name' : brand.name ,
+                          'web' : brand.web ,
+			  'country' : brand.country , 
+			  'pictureurl' : brand.pictureurl}
 	except Brand.DoesNotExist:
        	 raise Http404
     	return render_to_response('detailbrand.html', param)
@@ -35,6 +40,24 @@ def models(request):
 	param['all_models'] = Model.objects.all().order_by('brand')
 	return render_to_response('models.html',param)
 
+#Shows the details of a Model
+def model_detail(request, model_name):
+	try:
+		
+   		
+		model= Model.objects.get(name=model_name)
+		specs = model.specification.all()
+		param = { 'titlehead' : "Model Details",
+			  'name' : model.name ,
+			  'date' : model.date , 
+                          'price' : model.price ,
+			  'brand' : model.brand,
+			  'spec':specs,
+                          'pictureurl' : model.pictureurl }
+
+	except Model.DoesNotExist:
+       	 raise Http404
+    	return render_to_response('detailmodel.html', param)
 
 
 

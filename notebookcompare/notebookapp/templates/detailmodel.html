@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+	
+		<center>
+		{% if pictureurl|length > 0 %}
+			<img src="{{ pictureurl }}" align="right"> </img>
+		{% endif %}
+
+		<h2>{{ brand }}  {{ name }}</h2> 
+		Brand:  {{ brand }}</br>
+		Price: <b>{{ price }} € </b></br>
+		Date of launchment: {{ date }} </br>
+		Specifications:</br>
+		 {{ spec }}
+		
+		</br>
+		<a href="{{ web }}"> Website </a>
+		
+		</br>
+		</center>
+
+
+                         
+                         
+
+{% endblock %}
+
+
