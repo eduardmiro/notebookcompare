@@ -3,8 +3,18 @@
 
 {% block content %}
 
-<h1>List of brands</h1>
-{{ brand }}
+
+
+	{% for brand in all_brands %}
+
+		<B>{{ brand.name }}</b>  {{ brand.country }}  
+		<a href="{{ brand.web }}"> Website </a> <a href="/brands/{{ brand.name }}"> Brand Details </a> 
+		
+		</br>
+
+	{% endfor %}
+
+
 {% endblock %}
 
 

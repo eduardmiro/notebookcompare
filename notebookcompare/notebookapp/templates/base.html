@@ -1,14 +1,24 @@
+{% load staticfiles %}
 <html>
 <head>
 
-	<title>{{ titlehead}}</title>
-
+	<title>{{ titlehead}} - Notebook Compare </title>
+		<link rel="stylesheet" type="text/css"
+href="{% static "css/style.css" %}"/>
 </head>
 
 <body>
-<div id="menu"> <a href="brands">Brands</a></div>
 
-<div id="content block">{% block content %}{% endblock %}</div>	
+<div id="Header">Notebook Compare </a></div>
+
+	<div id="Menu">
+<h3>Menu</h3>
+<a href="/">Home</a> <br />
+<a href="/brands">List of Brands</a><br />
+
+	</div>
+
+<div id="Content"><h1>{{ titlehead}}</h1>{% block content %}{% endblock %}</div>	
 
 
 </body>
