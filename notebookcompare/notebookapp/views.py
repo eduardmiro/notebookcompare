@@ -8,22 +8,14 @@ from django.shortcuts import render_to_response
 from django.http import Http404
 # 
 def mainpage(request):
-	template = get_template('mainpage.html')
-	variables = Context({
-                      'titlehead': 'Notebook Compare application',
-                      'pagetitle': 'Benvinguts a la nostra aplicacio per comparar portatils!',
-                      'contentbody': ''
-		
-	})
-	
-	output = template.render(variables)
-	return HttpResponse(output)
+	return render_to_response('mainpage.html')
 
 #lists all the brands in the DB
 def brands(request):
 	all_brands = Brand.objects.all()
 	output = ', '.join([p.name + ' '+ p.web for p in all_brands])
-	return HttpResponse(output)
+	#return HttpResponse(output)
+	return render_to_response('brands.html')
 #list the details of a brand
 def brand_detail(request, brand_name):
 	try:
