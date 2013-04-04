@@ -69,7 +69,7 @@ def brand_models(request, brand_name):
 			  'brandcountry' : brand.country , 
 			  'brandpictureurl' : brand.pictureurl}
 		#Filter the info, only the brand selected.
-		query = Model.objects.filter(brand=spec.pk)
+		query = Model.objects.filter(brand=brand.pk)
 		param['all_models_brand'] = query
 
 	except Brand.DoesNotExist:
@@ -94,8 +94,8 @@ def component_detail(request, comp_name):
        	 raise Http404
     	return render_to_response('detailcomponent.html', param)
 
-#list ALL details
-def component_detail_all(request):
+#Specifications list ALL details
+def specifications_detail_all(request):
 	try:
 		query = Specification.objects.all()
 		param = { 'titlehead' : "List of all components details ",
@@ -104,5 +104,18 @@ def component_detail_all(request):
 	except Brand.DoesNotExist:
        	 raise Http404
     	return render_to_response('detailspecifications.html', param)
+
+#All computers regarding a specific spec
+def specifications_list(request, spec_id):
+	try:
+
+		query = Model.objects.filter(specification=spec_id)
+		param = { 'titlehead' : "Search a model with specific specification",
+			  'spec':query}
+			  
+		
+	except Brand.DoesNotExist:
+       	 raise Http404
+    	return render_to_response('listmodelsspec.html', param)
 
 

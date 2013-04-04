@@ -27,5 +27,7 @@ urlpatterns = patterns('',
 	#COMPONENTS
     url(r'^components/$', components , name='components'),
     url(r'^components/(?P<comp_name>\w+)/$', component_detail , name='Component Detail'),
-    url(r'^specifications/$', component_detail_all , name='Component Detail all'),
+	#Specifications
+    url(r'^specifications/$', specifications_detail_all , name='Specification Detail all'),
+    url(r'^specifications/(?P<spec_id>\w+)/$', specifications_list , name='specifications list'),
 )
