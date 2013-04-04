@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+	
+		
+
+		{% for component in spec %}
+			{{ component.name }} <a href="/components/{{component.id}}"> Busca Portàtils</a></br>
+			
+		{% endfor %}
+		</br>
+		</center>
+
+
+
+{% endblock %}
+
+

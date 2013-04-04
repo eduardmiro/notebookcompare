@@ -10,9 +10,12 @@
 		{% endif %}
 
 		<h2>{{ brand }}  {{ name }}</h2> 
-		Brand:  {{ brand }}</br>
+		Brand:  <a href="/brands/{{ brand }}"> 
+		{{ brand }} </a>  </br>
+		
 		Price: <b>{{ price }} € </b></br>
 		Date of launchment: {{ date }} </br></br>
+
 		<table>
 		<th>Specifications:</th>
 		
@@ -24,8 +27,8 @@
 		
 		</table>
 		</br>
-		<a href="{{ web }}"> Website </a>
 		
+		<a href="/brands/{{ brand }}/models/"> Other {{ brand }} Model </a>
 		</br>
 		</center>
 

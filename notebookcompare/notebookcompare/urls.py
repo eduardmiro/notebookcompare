@@ -17,9 +17,15 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', mainpage, name='home'),
+	#BRANDS
     url(r'^brands/$', brands , name='brands'),
     url(r'^brands/(?P<brand_name>\w+)/$', brand_detail , name='brand detail'),
     url(r'^brands/(?P<brand_name>\w+)/models/$', brand_models , name='brand models'),
+	#MODELS
     url(r'^models/$', models , name='models'),
     url(r'^models/(?P<model_name>\w+)/$', model_detail , name='model detail'),
+	#COMPONENTS
+    url(r'^components/$', components , name='components'),
+    url(r'^components/(?P<comp_name>\w+)/$', component_detail , name='Component Detail'),
+    url(r'^specifications/$', component_detail_all , name='Component Detail all'),
 )

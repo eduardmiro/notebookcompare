@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<h2>Type of components</h2>
+
+<p> Select which component you want to search by </p>
+	{% for name in all_components %}
+
+		<a href="/components/{{ name }}">{{ name }}</a> </br>
+
+	{% endfor %}
+
+
+{% endblock %}
+
+
