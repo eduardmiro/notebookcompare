@@ -12,10 +12,17 @@
 		<h2>{{ brand }}  {{ name }}</h2> 
 		Brand:  {{ brand }}</br>
 		Price: <b>{{ price }} € </b></br>
-		Date of launchment: {{ date }} </br>
-		Specifications:</br>
-		 {{ spec }}
+		Date of launchment: {{ date }} </br></br>
+		<table>
+		<th>Specifications:</th>
 		
+		{% for name in spec %}
+			<tr><td>{{ name }} </td></tr>
+			
+		{% endfor %}
+		
+		
+		</table>
 		</br>
 		<a href="{{ web }}"> Website </a>
 		

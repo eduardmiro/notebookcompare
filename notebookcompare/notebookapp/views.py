@@ -59,6 +59,24 @@ def model_detail(request, model_name):
        	 raise Http404
     	return render_to_response('detailmodel.html', param)
 
+#show all the models of a brand
+def brand_models(request, brand_name):
+	try:
+		brand= Brand.objects.get(name=brand_name)
+		param = { 'titlehead' : "Brand Details - Show all models",
+			  'brandname' : brand.name ,
+                          'brandweb' : brand.web ,
+			  'brandcountry' : brand.country , 
+			  'brandpictureurl' : brand.pictureurl}
+		#Filter the info, only the brand selected.
+		query = Model.objects.all()
+		for model in query:
+   			query2 = query.filter(brand=brand.pk)
+		param['all_models_brand'] = query2
+
+	except Brand.DoesNotExist:
+       	 raise Http404
+    	return render_to_response('detailbrandmodel.html', param )
 
 
 

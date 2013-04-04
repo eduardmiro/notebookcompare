@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+	
+		<center>
+		{% if pictureurl|length > 0 %}
+			<img src="{{ brandpictureurl }}"> </img>
+		{% endif %}
+
+		<h2>{{ brandname }}</h2>  
+		<h3>{{ brandcountry }}  </h3>
+		<a href="{{ brandweb }}"> Website </a>
+		
+		</br>
+		</center>
+
+<center>
+		{% for model in all_models_brand %}
+
+		<B>{{ model.brand}}</b>  <B>{{ model.name }}</b>  Price: {{ model.price }} €   <a href="/models/{{ model.name  }}"> Notebook Details </a> 
+		
+		</br>
+
+		{% endfor %}
+		{% if model|length > 0 %}
+			<h3>The selected brand has no models at the moment</h3>
+		{% endif %}
+
+
+
+                       
+		
+			 
+
+
+{% endblock %}
+
+
