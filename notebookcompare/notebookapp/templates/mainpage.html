@@ -2,22 +2,39 @@
 
 
 {% block content %}
-<h2> Welcome to our notebookcompare application!</h2>
 
-<h3>With this app you can:</h3>
-<li><a href="/brands/">View a list with all our brands </a></li>
-<li><a href="/brands/ASUS">View the brand details (for example ASUS) </a></li>
-<li><a href="/brands/ASUS/models/">View all the brand notebook models (for example ASUS) </a></li>
-</br>
-<li><a href="/models/">View a list with all our models </a></li>
-<li><a href="/models/Z930">View the notebook details details (for example Z930) </a></li>
-</li>
-</br>
-<li><a href="/components/">View a list with all the components avaible and search your notebook trough the list </a></li>
-<li><a href="/components/CPU">View a list with the diferents specifications of a component (for example CPU) </a></li>
-<br>
-<li><a href="/specifications/">View a list with all the specifications avaible </a></li>
-<li><a href="/specifications/5">View a list with a specific specification (for example Intel Core i5) </a></li>
+
+{% if state %}
+    {{state}}
+
+{% else %}
+	<h2> Welcome {% if user.username %}{{ user.username }}{% else %}Guest{% endif %} to our notebookcompare application!</h2>
+	<h3>With this app you can:</h3>
+	<li><a href="/brands/">View a list with all our brands </a></li>
+	<li><a href="/brands/ASUS">View the brand details (for example ASUS) </a></li>
+	<li><a href="/brands/ASUS/models/">View all the brand notebook models (for example ASUS) </a></li>
+	</br>
+	<li><a href="/models/">View a list with all our models </a></li>
+	<li><a href="/models/Z930">View the notebook details details (for example Z930) </a></li>
+	</li>
+	</br>
+	<li><a href="/components/">View a list with all the components avaible and search your notebook trough the list </a></li>
+	<li><a href="/components/CPU">View a list with the diferents specifications of a component (for example CPU) </a></li>
+	<br>
+	<li><a href="/specifications/">View a list with all the specifications avaible </a></li>
+	<li><a href="/specifications/5">View a list with a specific specification (for example Intel Core i5) </a></li>
+	<br>
+	<li><a href="/login/">Log in with an user </a></li>
+	<li><a href="/logout/">Log out</a></li>
+{% endif %}
+
+
+   
+
+  
+
+
+
 
 
 {% endblock %}

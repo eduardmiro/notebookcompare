@@ -21,7 +21,7 @@ def mainpage(request):
 def brands(request):
 	param = { 'titlehead' : "List of all Brands"}
 	param['all_brands'] = Brand.objects.all()
-	return render_to_response('brands.html',param)
+	return render_to_response('brands.html',param,context_instance=RequestContext(request))
 
 
 #Shows the details of a brand
@@ -35,13 +35,13 @@ def brand_detail(request, brand_name):
 			  'pictureurl' : brand.pictureurl}
 	except Brand.DoesNotExist:
        	 raise Http404
-    	return render_to_response('detailbrand.html', param)
+    	return render_to_response('detailbrand.html',param,context_instance=RequestContext(request))
 
 #lists all the models
 def models(request):
 	param = { 'titlehead' : "List of all Models ordered by Brand"}
 	param['all_models'] = Model.objects.all().order_by('brand')
-	return render_to_response('models.html',param)
+	return render_to_response('models.html',param,context_instance=RequestContext(request))
 
 #Shows the details of a Model
 def model_detail(request, model_name):
@@ -60,7 +60,7 @@ def model_detail(request, model_name):
 
 	except Model.DoesNotExist:
        	 raise Http404
-    	return render_to_response('detailmodel.html', param)
+    	return render_to_response('detailmodel.html',param,context_instance=RequestContext(request))
 
 #show all the models of a brand
 def brand_models(request, brand_name):
@@ -77,13 +77,13 @@ def brand_models(request, brand_name):
 
 	except Brand.DoesNotExist:
        	 raise Http404
-    	return render_to_response('detailbrandmodel.html', param )
+    	return render_to_response('detailbrandmodel.html',param,context_instance=RequestContext(request))
 
 #list all components
 def components(request):
 	param = { 'titlehead' : "List of all components"}
 	param['all_components'] = Component.objects.all().order_by('name')
-	return render_to_response('components.html',param)
+	return render_to_response('components.html',param,context_instance=RequestContext(request))
 #list all components detail
 def component_detail(request, comp_name):
 	try:
@@ -95,7 +95,7 @@ def component_detail(request, comp_name):
 		
 	except Brand.DoesNotExist:
        	 raise Http404
-    	return render_to_response('detailcomponent.html', param)
+    	return render_to_response('detailcomponent.html',param,context_instance=RequestContext(request))
 
 #Specifications list ALL details
 def specifications_detail_all(request):
@@ -106,7 +106,7 @@ def specifications_detail_all(request):
 		
 	except Brand.DoesNotExist:
        	 raise Http404
-    	return render_to_response('detailspecifications.html', param)
+    	return render_to_response('detailspecifications.html',param,context_instance=RequestContext(request))
 
 #All computers regarding a specific spec
 def specifications_list(request, spec_id):
@@ -119,29 +119,15 @@ def specifications_list(request, spec_id):
 		
 	except Brand.DoesNotExist:
        	 raise Http404
-    	return render_to_response('listmodelsspec.html', param)
+    	return render_to_response('listmodelsspec.html',param,context_instance=RequestContext(request))
 #login  ,context_instance=RequestContext(request) is for parsing the user
-
-def login_user(request):
-    state = "Please log in below..."
-    username = password = ''
-    if request.POST:
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                state = "You're successfully logged in!"
-            else:
-                state = "Your account is not active, please contact the site admin."
-        else:
-            state = "Your username and/or password were incorrect."
-
-    return render_to_response('login.html',{'state':state, 'username': username },context_instance=RequestContext(request))
-def logout_user(request):
+def logout_view(request):
     logout(request)
-    param = { 'titlehead' : "Home"}
+    param = { 'titlehead' : "Log out",
+	      'state': "Thanks for use Notebookcompare, Feel free to come back when you want!"}
     return render_to_response('mainpage.html',param)
+
+
+
 
 

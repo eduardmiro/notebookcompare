@@ -33,7 +33,8 @@ urlpatterns = patterns('',
 
 	#login user
 	#Specifications
-    url(r'^login/$', login_user , name='login'),
-    url(r'^logout/$', logout_user , name='logout'),
+
+    url(r'^login/$', 'django.contrib.auth.views.login'),
+    url(r'^logout/$', logout_view),
 
 )

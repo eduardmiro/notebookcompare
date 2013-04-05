@@ -9,13 +9,12 @@ href="{% static "css/style.css" %}"/>
 
 <body>
 
-<div id="Header">Notebook Compare  | 
-{% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}. Thanks for logging in.<a href="/logout/">logout.</a></p>
+<div id="Header">Notebook Compare  </div>
+<div align="right">{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}. Thanks for logging in. <a href="/logout/">Logout</a></p>
 {% else %}
     <p>Welcome, new user. Please <a href="/login/">log in.</a></p>
 {% endif %} </div>
-
 	<div id="Menu">
 <h3>Menu</h3>
 <a href="/">Home</a> <br />
