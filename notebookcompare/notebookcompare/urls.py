@@ -4,7 +4,7 @@ from notebookapp.views import *
 from django.contrib import admin
 admin.autodiscover()
 
-
+from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
     # Examples:
@@ -30,4 +30,10 @@ urlpatterns = patterns('',
 	#Specifications
     url(r'^specifications/$', specifications_detail_all , name='Specification Detail all'),
     url(r'^specifications/(?P<spec_id>\w+)/$', specifications_list , name='specifications list'),
+
+	#login user
+	#Specifications
+    url(r'^login/$', login_user , name='login'),
+    url(r'^logout/$', logout_user , name='logout'),
+
 )
