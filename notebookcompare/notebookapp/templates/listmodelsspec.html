@@ -10,7 +10,8 @@
 		{% for component in spec %}
 			{{ component.name }} <a href="/models/{{component.name}}"> Model Details </a></br>
 		
-			
+			{% empty %}
+    		Sorry, we have no models with this specification!
 		{% endfor %}
 		</br>
 		</center>
