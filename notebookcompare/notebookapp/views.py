@@ -24,7 +24,7 @@ def brands(request):
 	return render_to_response('brands.html',param,context_instance=RequestContext(request))
 
 
-#Shows the details of a brand
+#Shows the details of one brand , we retrieve the details and we show it on detailbrand
 def brand_detail(request, brand_name):
 	try:
 		brand= Brand.objects.get(name=brand_name)
@@ -37,13 +37,14 @@ def brand_detail(request, brand_name):
        	 raise Http404
     	return render_to_response('detailbrand.html',param,context_instance=RequestContext(request))
 
-#lists all the models
+#lists all the models avaibles and we order it by the brand name
 def models(request):
 	param = { 'titlehead' : "List of all Models ordered by Brand"}
 	param['all_models'] = Model.objects.all().order_by('brand')
 	return render_to_response('models.html',param,context_instance=RequestContext(request))
 
-#Shows the details of a Model
+#Shows the details of a Model, we try if the model exist and give all the details, if not we show a 404 error.
+#as "spec" is many to many we have to get it on diferent variable.
 def model_detail(request, model_name):
 	try:
 		
@@ -62,7 +63,7 @@ def model_detail(request, model_name):
        	 raise Http404
     	return render_to_response('detailmodel.html',param,context_instance=RequestContext(request))
 
-#show all the models of a brand
+#show all the models of a specific brand
 def brand_models(request, brand_name):
 	try:
 		brand= Brand.objects.get(name=brand_name)
@@ -79,12 +80,12 @@ def brand_models(request, brand_name):
        	 raise Http404
     	return render_to_response('detailbrandmodel.html',param,context_instance=RequestContext(request))
 
-#list all components
+#list all components on the database, on this we want to show CPU, GFX...
 def components(request):
 	param = { 'titlehead' : "List of all components"}
 	param['all_components'] = Component.objects.all().order_by('name')
 	return render_to_response('components.html',param,context_instance=RequestContext(request))
-#list all components detail
+#list all components details , in this we want to show all the different types of a component (for example all the cpus that have the different computers)
 def component_detail(request, comp_name):
 	try:
 		spec= Component.objects.get(name=comp_name)
@@ -97,7 +98,7 @@ def component_detail(request, comp_name):
        	 raise Http404
     	return render_to_response('detailcomponent.html',param,context_instance=RequestContext(request))
 
-#Specifications list ALL details
+#Lists all the different specifications , so here we show all the differents component specifications that we have (all the cpu's, all the gfx...)
 def specifications_detail_all(request):
 	try:
 		query = Specification.objects.all()
@@ -120,7 +121,8 @@ def specifications_list(request, spec_id):
 	except Brand.DoesNotExist:
        	 raise Http404
     	return render_to_response('listmodelsspec.html',param,context_instance=RequestContext(request))
-#login  ,context_instance=RequestContext(request) is for parsing the user
+
+#login part, we use the bult-in for login but we need the logout because we want to use some extra parameters. note that we have to use context_instance=RequestContext(request)  for parsing the user in every def in views.py
 def logout_view(request):
     logout(request)
     param = { 'titlehead' : "Log out",
