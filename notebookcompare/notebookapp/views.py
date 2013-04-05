@@ -15,7 +15,7 @@ from django.http import Http404
 # 
 def mainpage(request):
 	param = { 'titlehead' : "Home"}
-	return render_to_response('mainpage.html',param)
+	return render_to_response('mainpage.html',param,context_instance=RequestContext(request))
 
 #lists all the brands in the DB
 def brands(request):
@@ -120,7 +120,7 @@ def specifications_list(request, spec_id):
 	except Brand.DoesNotExist:
        	 raise Http404
     	return render_to_response('listmodelsspec.html', param)
-#login
+#login  ,context_instance=RequestContext(request) is for parsing the user
 
 def login_user(request):
     state = "Please log in below..."
