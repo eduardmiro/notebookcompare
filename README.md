@@ -5,13 +5,13 @@ notebookcompare
 			    ,Z$Z$Z~                                     
 			       Z,                                       
 			                                                
-			     N~  N:                                     
-			     N~  N:                                     
-			     N~  N:                                     
-		 ZZZ~        N~  N:       :ZIZ           Universitat de Lleida                  
-		 IZZ         N~  N:        ZZ?        Escola Politècnica Superior                  
-		=            N~  N:           ?                         
-		      ~$     N~  N:    II                               
+			     N   N                                     
+			     N   N                                     
+			     N   N                                     
+		 ZZZ~        N   N       ~ZIZ           Universitat de Lleida                  
+		 IZZ         N   N        IZZ        Escola Politècnica Superior                  
+		=            N   N           =                         
+		      ~$     N   N    II                               
 			ZZ   NNDNN   ZZ.                                
 			 ~ZZ       $ZI                                  
 			   ZZ     ZZ                                    
