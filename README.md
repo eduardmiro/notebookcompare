@@ -1,25 +1,8 @@
 notebookcompare
 ===============
                                                                               
-	      Z                                        
-	   ,Z$Z$Z~                                     
-	      Z,                                       
-					                                               
-	    N   N                                  
-	    N   N                                   
-	    N   N                                     
-ZZZ~        N   N       ~ZIZ           Universitat de Lleida                  
-IZZ         N   N        IZZ        Escola Politècnica Superior                  
- =          N   N         =                         
-     ~$     N   N    II                               
-       ZZ   NNDNN   ZZ.                                
-					 ~ZZ       $ZI                                  
-					   ZZ     ZZ                                    
-					     Z,  Z.                                     
-					      $ Z                                                                              
-	             
 
-Práctica 1- Desarrollo de aplicación web bàsica en django- GEI Josep Mª Viladegut - Eduard Miró
+Práctica 1- Desarrollo de aplicación web bàsica en django- GEI Josep Mª Viladegut - Eduard Miró- Universitat de Lleida - EPS
 
 	Github público: https://github.com/eduardmiro/notebookcompare
 
