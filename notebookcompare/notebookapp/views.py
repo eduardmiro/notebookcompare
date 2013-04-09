@@ -17,6 +17,14 @@ def mainpage(request):
 	param = { 'titlehead' : "Home"}
 	return render_to_response('mainpage.html',param,context_instance=RequestContext(request))
 
+#login part, we use the bult-in for login but we need the logout because we want to use some extra parameters. note that we have to use context_instance=RequestContext(request)  for parsing the user in every def in views.py
+def logout_view(request):
+    logout(request)
+    param = { 'titlehead' : "Log out",
+	      'state': "Thanks for use Notebookcompare, Feel free to come back when you want!"}
+    return render_to_response('mainpage.html',param)
+
+
 #lists all the brands in the DB
 def brands(request):
 	param = { 'titlehead' : "List of all Brands"}
@@ -33,7 +41,7 @@ def brand_detail(request, brand_name):
                           'web' : brand.web ,
 			  'country' : brand.country , 
 			  'pictureurl' : brand.pictureurl}
-	except Brand.DoesNotExist:
+	except:
        	 raise Http404
     	return render_to_response('detailbrand.html',param,context_instance=RequestContext(request))
 
@@ -59,7 +67,7 @@ def model_detail(request, model_name):
 			  'spec':specs,
                           'pictureurl' : model.pictureurl }
 
-	except Model.DoesNotExist:
+	except:
        	 raise Http404
     	return render_to_response('detailmodel.html',param,context_instance=RequestContext(request))
 
@@ -76,7 +84,7 @@ def brand_models(request, brand_name):
 		query = Model.objects.filter(brand=brand.pk)
 		param['all_models_brand'] = query
 
-	except Brand.DoesNotExist:
+	except:
        	 raise Http404
     	return render_to_response('detailbrandmodel.html',param,context_instance=RequestContext(request))
 
@@ -94,7 +102,7 @@ def component_detail(request, comp_name):
 		param = { 'titlehead' : "List of all "+  comp_name,
 			  'spec':query	}
 		
-	except Brand.DoesNotExist:
+	except:
        	 raise Http404
     	return render_to_response('detailcomponent.html',param,context_instance=RequestContext(request))
 
@@ -105,7 +113,7 @@ def specifications_detail_all(request):
 		param = { 'titlehead' : "List of all components details ",
 			  'spec':query	}
 		
-	except Brand.DoesNotExist:
+	except:
        	 raise Http404
     	return render_to_response('detailspecifications.html',param,context_instance=RequestContext(request))
 
@@ -117,17 +125,12 @@ def specifications_list(request, spec_id):
 		param = { 'titlehead' : "Search a model with specific specification",
 			  'spec':query}
 			  
-		
-	except Brand.DoesNotExist:
+#here we raise the http error if we do not pass the component id (for example AA instead of a number), if it's a number we control the error in the html 
+	except:
        	 raise Http404
     	return render_to_response('listmodelsspec.html',param,context_instance=RequestContext(request))
 
-#login part, we use the bult-in for login but we need the logout because we want to use some extra parameters. note that we have to use context_instance=RequestContext(request)  for parsing the user in every def in views.py
-def logout_view(request):
-    logout(request)
-    param = { 'titlehead' : "Log out",
-	      'state': "Thanks for use Notebookcompare, Feel free to come back when you want!"}
-    return render_to_response('mainpage.html',param)
+
 
 
 
