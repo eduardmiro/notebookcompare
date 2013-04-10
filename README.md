@@ -33,5 +33,6 @@ El arbol de rutas para obtener la información es el siguiente:
 
 Por el momento no esta implementado poder obtener los datos mediante xml o json
 
-El css implementado se puede encontrar en: http://bluerobot.com/web/layouts/layout1.html
+	El css implementado se puede encontrar en: http://bluerobot.com/web/layouts/layout1.html
 
+	Se incorpora una base de datos de muestra, el usuario de pruebas pepe/pepe
