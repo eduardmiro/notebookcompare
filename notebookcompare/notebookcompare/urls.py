@@ -23,7 +23,7 @@ urlpatterns = patterns('',
     url(r'^brands/(?P<brand_name>\w+)/models/$', brand_models , name='brand models'),
 	#MODELS
     url(r'^models/$', models , name='models'),
-    url(r'^models/(?P<model_name>\w+)/$', model_detail , name='model detail'),
+    url(r'^models/(?P<model_name>[\w\-]+)/$', model_detail , name='model detail'),
 	#COMPONENTS
     url(r'^components/$', components , name='components'),
     url(r'^components/(?P<comp_name>\w+)/$', component_detail , name='Component Detail'),
