@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_protect
 
 
 #imports 
+from forms import *
 from notebookapp.models import Brand
 from notebookapp.models import Model
 from notebookapp.models import *
@@ -129,6 +130,20 @@ def specifications_list(request, spec_id):
 	except:
        	 raise Http404
     	return render_to_response('listmodelsspec.html',param,context_instance=RequestContext(request))
+
+
+def review(request):
+    if request.method == 'POST': # If the form has been submitted...
+        form = ReviewForm(request.user,request.POST) # A form bound to the POST data
+	#form = ConcursantForm.base_fields['escola'].queryset = Escola.objects.filter(responsables="1")
+        if form.is_valid(): # All validation rules pass
+            form.save()
+            return HttpResponseRedirect('/') # Redirect after POST
+    else:
+        form = ReviewForm(request.user) # An unbound form
+    param = { 'titlehead' : "Formulari Inscripcio",
+			  'form':form	}
+    return render(request, 'review.html', param ,context_instance=RequestContext(request))
 
 
 
