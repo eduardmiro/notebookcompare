@@ -5,6 +5,8 @@ from django.template.loader import get_template
 from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate, login , logout
 from django.views.decorators.csrf import csrf_protect
+from django.shortcuts import render
+from django import forms
 
 
 #imports 
@@ -134,13 +136,13 @@ def specifications_list(request, spec_id):
 
 def review(request):
     if request.method == 'POST': # If the form has been submitted...
-        form = ReviewForm(request.user,request.POST) # A form bound to the POST data
+        form = ReviewForm(request.POST) # A form bound to the POST data
 	#form = ConcursantForm.base_fields['escola'].queryset = Escola.objects.filter(responsables="1")
         if form.is_valid(): # All validation rules pass
             form.save()
             return HttpResponseRedirect('/') # Redirect after POST
     else:
-        form = ReviewForm(request.user) # An unbound form
+        form = ReviewForm() # An unbound form
     param = { 'titlehead' : "Formulari Inscripcio",
 			  'form':form	}
     return render(request, 'review.html', param ,context_instance=RequestContext(request))
