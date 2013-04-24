@@ -46,6 +46,9 @@ class Review(models.Model):
 	user=models.ForeignKey(User,default=User.objects.get(id=1))
 	date=models.DateField(default=date.today)
 	model=models.ForeignKey(Model)
+	price_found=models.CharField(max_length=8,blank=True,null=True)
+	shop_name=models.CharField(max_length=30,blank=True,null=True)
+	shop_url=models.CharField(max_length=100,blank=True,null=True)
 	def __unicode__ (self):
 		return self.user
 
