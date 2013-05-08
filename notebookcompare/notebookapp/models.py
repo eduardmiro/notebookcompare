@@ -43,7 +43,7 @@ class Review(models.Model):
 	RATING_CHOICES = ((1, 'one'), (2, 'two'), (3, 'three'), (4, 'four'), (5, 'five'))
 	rating= models.PositiveSmallIntegerField('Rating (stars)',blank=False,default=3,choices=RATING_CHOICES)
 	comment=models.TextField(blank=True,null=True)
-	user=models.ForeignKey(User,default=User.objects.get(id=1))
+	user=models.ForeignKey(User,default=User.objects.get(id=3))
 	date=models.DateField(default=date.today)
 	model=models.ForeignKey(Model)
 	price_found=models.CharField(max_length=8,blank=True,null=True)

@@ -64,6 +64,7 @@ def model_detail(request, model_name):
 		model= Model.objects.get(name=model_name)
 		specs = model.specification.all()
 		param = { 'titlehead' : "Model Details",
+			  'id' : model.pk,
 			  'name' : model.name ,
 			  'date' : model.date , 
                           'price' : model.price ,
@@ -144,7 +145,7 @@ def review(request):
             return HttpResponseRedirect('/') # Redirect after POST
     else:
         form = ReviewForm() # An unbound form
-    param = { 'titlehead' : "Formulari Inscripcio",
+    param = { 'titlehead' : "Review Form",
 			  'form':form	}
     return render(request, 'review.html', param ,context_instance=RequestContext(request))
 
