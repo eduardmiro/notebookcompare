@@ -62,6 +62,7 @@ def model_detail(request, model_name):
 		
    		
 		model= Model.objects.get(name=model_name)
+		review = Review.objects.filter(model=model.pk)
 		specs = model.specification.all()
 		param = { 'titlehead' : "Model Details",
 			  'id' : model.pk,
@@ -70,7 +71,8 @@ def model_detail(request, model_name):
                           'price' : model.price ,
 			  'brand' : model.brand,
 			  'spec':specs,
-                          'pictureurl' : model.pictureurl }
+                          'pictureurl' : model.pictureurl,
+			  'review' : review }
 
 	except:
        	 raise Http404
