@@ -39,7 +39,7 @@ urlpatterns = patterns('',
 	#web 2.0
 #reviews
     url(r'^review/$', review , name='review'),
-    url(r'^specifications/(?P<model_id>\w+)/$', review_model , name='review model'),
+    url(r'^review/(?P<model_id>\w+)/$', review_model , name='review model'),
 
 
 
