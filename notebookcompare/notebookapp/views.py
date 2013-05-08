@@ -153,6 +153,20 @@ def review(request):
 
 
 
+def review_model(request , model_id):
+    if request.method == 'POST': # If the form has been submitted...
+        form = ReviewForm(request.POST) # A form bound to the POST data
+	#form = ConcursantForm.base_fields['escola'].queryset = Escola.objects.filter(responsables="1")
+        if form.is_valid(): # All validation rules pass
+            form.save()
+            return HttpResponseRedirect('/') # Redirect after POST
+    else:
+        form = ReviewForm() # An unbound form
+    param = { 'titlehead' : "Review Form",
+			  'form':form	}
+    return render(request, 'review.html', param ,context_instance=RequestContext(request))
+
+
 
 
 
