@@ -137,24 +137,19 @@ def specifications_list(request, spec_id):
        	 raise Http404
     	return render_to_response('listmodelsspec.html',param,context_instance=RequestContext(request))
 
-@login_required
+
 def review(request):
-    if request.method == 'POST': # If the form has been submitted...
-        form = ReviewForm(request.POST) # A form bound to the POST data
-	
-	#form = ConcursantForm.base_fields['escola'].queryset = Escola.objects.filter(responsables="1")
-        if form.is_valid(): # All validation rules pass
-	    
-            form.save()
-            return HttpResponseRedirect('/') # Redirect after POST
-    else:
-        form = ReviewForm() # An unbound form
-    param = { 'titlehead' : "Review Form",
-			  'form':form	}
-    return render(request, 'review.html', param ,context_instance=RequestContext(request))
+	try:
+		query = Review.objects.all()
+		param = { 'titlehead' : "List of all reviews ",
+			  'review' : query	}
+		
+	except:
+       	 raise Http404
+    	return render_to_response('review_list.html',param,context_instance=RequestContext(request))
 
 @login_required
-def review_model(request,model_id):
+def review_model_add(request,model_id):
     query = Model.objects.filter(pk=model_id)
     user = request.user
 
@@ -171,7 +166,7 @@ def review_model(request,model_id):
 			  'model': query,
 			  'model_id' : model_id, 
 			  'form':form	}
-    return render(request, 'review.html', param ,context_instance=RequestContext(request))
+    return render(request, 'review_add.html', param ,context_instance=RequestContext(request))
 
 
 
