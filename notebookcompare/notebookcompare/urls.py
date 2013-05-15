@@ -36,6 +36,9 @@ urlpatterns = patterns('',
 
     url(r'^login/$', 'django.contrib.auth.views.login'),
     url(r'^logout/$', logout_view),
+    url(r'^register/$',register),
+
+
 	#web 2.0
 #reviews
     url(r'^review/$', review , name='review'),

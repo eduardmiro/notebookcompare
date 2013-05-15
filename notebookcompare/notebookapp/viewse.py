@@ -8,8 +8,8 @@ from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
 from django import forms
 from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+
+
 #imports 
 from forms import *
 from notebookapp.models import Brand
@@ -62,7 +62,6 @@ def model_detail(request, model_name):
 		
    		
 		model= Model.objects.get(name=model_name)
-		review = Review.objects.filter(model=model.pk)
 		specs = model.specification.all()
 		param = { 'titlehead' : "Model Details",
 			  'id' : model.pk,
@@ -71,8 +70,7 @@ def model_detail(request, model_name):
                           'price' : model.price ,
 			  'brand' : model.brand,
 			  'spec':specs,
-                          'pictureurl' : model.pictureurl,
-			  'review' : review }
+                          'pictureurl' : model.pictureurl }
 
 	except:
        	 raise Http404
@@ -137,14 +135,12 @@ def specifications_list(request, spec_id):
        	 raise Http404
     	return render_to_response('listmodelsspec.html',param,context_instance=RequestContext(request))
 
-@login_required
+
 def review(request):
     if request.method == 'POST': # If the form has been submitted...
         form = ReviewForm(request.POST) # A form bound to the POST data
-	
 	#form = ConcursantForm.base_fields['escola'].queryset = Escola.objects.filter(responsables="1")
         if form.is_valid(): # All validation rules pass
-	    
             form.save()
             return HttpResponseRedirect('/') # Redirect after POST
     else:
@@ -153,39 +149,9 @@ def review(request):
 			  'form':form	}
     return render(request, 'review.html', param ,context_instance=RequestContext(request))
 
-@login_required
-def review_model(request,model_id):
-    query = Model.objects.filter(pk=model_id)
-    user = request.user
-
-    if request.method == 'POST': # If the form has been submitted...
-        form = ReviewForm(user,model_id,request.POST) # A form bound to the POST data
-	form.model=model_id
-	#form = ConcursantForm.base_fields['escola'].queryset = Escola.objects.filter(responsables="1")
-        if form.is_valid(): # All validation rules pass
-            form.save()
-            return HttpResponseRedirect('/') # Redirect after POST
-    else:
-        form = ReviewForm(user,model_id) # An unbound form
-    param = { 'titlehead' : "Formulari Review",
-			  'model': query,
-			  'model_id' : model_id, 
-			  'form':form	}
-    return render(request, 'review.html', param ,context_instance=RequestContext(request))
 
 
 
-def register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            new_user = form.save()
-            return HttpResponseRedirect("/")
-    else:
-        form = UserCreationForm()
-    return render(request, "registration/register.html", {
-        'form': form,
-    })
 
 
 
