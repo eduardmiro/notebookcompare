@@ -27,7 +27,18 @@ def logout_view(request):
     param = { 'titlehead' : "Log out",
 	      'state': "Thanks for use Notebookcompare, Feel free to come back when you want!"}
     return render_to_response('mainpage.html',param)
-
+#register user part
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            return HttpResponseRedirect("/")
+    else:
+        form = UserCreationForm()
+    return render(request, "registration/register.html", {
+        'form': form,
+    })
 
 #lists all the brands in the DB
 def brands(request):
@@ -155,11 +166,9 @@ def review_model_add(request,model_id):
 
     if request.method == 'POST': # If the form has been submitted...
         form = ReviewForm(user,model_id,request.POST) # A form bound to the POST data
-	form.model=model_id
-	#form = ConcursantForm.base_fields['escola'].queryset = Escola.objects.filter(responsables="1")
         if form.is_valid(): # All validation rules pass
             form.save()
-            return HttpResponseRedirect('/') # Redirect after POST
+            return HttpResponseRedirect('/review/') # Redirect after POST
     else:
         form = ReviewForm(user,model_id) # An unbound form
     param = { 'titlehead' : "Formulari Review",
@@ -170,17 +179,26 @@ def review_model_add(request,model_id):
 
 
 
-def register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            new_user = form.save()
-            return HttpResponseRedirect("/")
-    else:
-        form = UserCreationForm()
-    return render(request, "registration/register.html", {
-        'form': form,
-    })
+def review_model_view(request,model_id):
 
+	try:
+		query = Review.objects.filter(model=model_id)
+		param = { 'titlehead' : "List of review of a model ",
+			  'review' : query	}
+		
+	except:
+       	 raise Http404
+    	return render_to_response('review_list.html',param,context_instance=RequestContext(request))
+
+def review_view(request,review_id):
+
+	try:
+		query = Review.objects.filter(pk=review_id)
+		param = { 'titlehead' : "View a review ",
+			  'review' : query	}
+		
+	except:
+       	 raise Http404
+    	return render_to_response('review_view.html',param,context_instance=RequestContext(request))
 
 
