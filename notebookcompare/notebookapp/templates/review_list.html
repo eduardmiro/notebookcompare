@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+	
+				<table>
+		<th>Reviews:</th>
+		{% for review in review %}
+			<tr><td>{{ review.rating }} </td> <td>{{ review.comment }} </td>
+			<td>{{ review.user }} </td><td>{{ review.date }} </td>
+			<td>{{ review.price_found }} </td><td>{{ review.shop_name }} </td>
+			<td>{{ review.shop_url }} </td></tr>
+			
+		{% endfor %}
+</table>
+	
+	
+
+
+
+{% endblock %}
+
+
+   
+
