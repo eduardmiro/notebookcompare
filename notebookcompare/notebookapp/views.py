@@ -79,6 +79,7 @@ def model_detail(request, model_name):
 			  'id' : model.pk,
 			  'name' : model.name ,
 			  'date' : model.date , 
+		          'useradd' : model.useradd,
                           'price' : model.price ,
 			  'brand' : model.brand,
 			  'spec':specs,
@@ -200,5 +201,26 @@ def review_view(request,review_id):
 	except:
        	 raise Http404
     	return render_to_response('review_view.html',param,context_instance=RequestContext(request))
+
+
+
+@login_required
+def model_add(request):
+    user = request.user
+    if request.method == 'POST': # If the form has been submitted...
+        form = AddModel(user,request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            form.save()
+            return HttpResponseRedirect('/models/') # Redirect after POST
+    else:
+        form = AddModel(user) # An unbound form
+    param = { 'titlehead' : "Formulari Afegir Portatil",
+			  'form':form	}
+    return render(request, 'model_add.html', param ,context_instance=RequestContext(request))
+
+@login_required
+def userpanel(request):
+	param = { 'titlehead' : "User Panel"}
+	return render_to_response('userpanel.html',param,context_instance=RequestContext(request))
 
 

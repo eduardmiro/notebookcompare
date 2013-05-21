@@ -10,32 +10,32 @@ class Country(models.Model):
 		return self.name
 
 class Brand(models.Model):
-	name = models.TextField(max_length=100)
+	name = models.CharField(max_length=120)
 	country = models.ForeignKey(Country)
-	web = models.TextField(max_length=100)
-	pictureurl = models.TextField(max_length=100)
+	web = models.CharField(max_length=100)
+	pictureurl = models.CharField(max_length=100)
 	def __unicode__ (self):
 		return self.name
 
 class Component(models.Model):
-	name = models.TextField(max_length=30)
+	name = models.CharField(max_length=30)
 	def __unicode__ (self):
 		return self.name
 
 class Specification (models.Model):
-	name = models.TextField(max_length=100)
+	name = models.CharField(max_length=100)
 	component = models.ForeignKey(Component)
 	def __unicode__ (self):
 		return self.component.name+" - " +self.name
 	
 class Model(models.Model):
-	name = models.TextField(max_length=100)
-	date = models.DateTimeField()
+	name = models.CharField(max_length=100)
+	date = models.DateTimeField(auto_now_add=True)
 	price = models.IntegerField()
 	brand = models.ForeignKey(Brand)
 	specification = models.ManyToManyField(Specification)
 	useradd = models.ForeignKey(User)
-	pictureurl = models.TextField(max_length=100)
+	pictureurl = models.CharField(max_length=100)
 	def __unicode__ (self):
 		return self.name
 

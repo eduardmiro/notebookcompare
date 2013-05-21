@@ -23,13 +23,13 @@ urlpatterns = patterns('',
     url(r'^brands/(?P<brand_name>\w+)/models/$', brand_models , name='brand models'),
 	#MODELS
     url(r'^models/$', models , name='models'),
-    url(r'^models/(?P<model_name>[\w\-]+)/$', model_detail , name='model detail'),
+    url(r'^models/view/(?P<model_name>[\w\-]+)/$', model_detail , name='model detail'),
 	#COMPONENTS
     url(r'^components/$', components , name='components'),
-    url(r'^components/(?P<comp_name>\w+)/$', component_detail , name='Component Detail'),
+    url(r'^components/view/(?P<comp_name>\w+)/$', component_detail , name='Component Detail'),
 	#Specifications
     url(r'^specifications/$', specifications_detail_all , name='Specification Detail all'),
-    url(r'^specifications/(?P<spec_id>\w+)/$', specifications_list , name='specifications list'),
+    url(r'^specifications/view/(?P<spec_id>\w+)/$', specifications_list , name='specifications list'),
 
 	#login user
 	#Specifications
@@ -43,12 +43,12 @@ urlpatterns = patterns('',
 #reviews
     url(r'^review/$', review , name='review',),
     url(r'^review/(?P<model_id>\d)/view/$', review_model_view , name='view review model'),
-
     url(r'^review/view/(?P<review_id>\d)/$', review_view , name='view review'),
-
-
     url(r'^review/(?P<model_id>\d)/add/$', review_model_add , name='review model'),
 
+#models
+    url(r'^models/add/$', model_add , name='add model'),
 
+    url(r'^userpanel/$',userpanel),
 
 )
