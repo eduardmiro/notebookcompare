@@ -32,3 +32,9 @@ class AddSpecification(ModelForm):
         super(AddSpecification, self).__init__(*args, **kwargs)
     class Meta:
         model = Specification
+
+class AddBrand(ModelForm):
+    def __init__(self, user, *args, **kwargs):
+        super(AddBrand, self).__init__(*args, **kwargs)
+    class Meta:
+        model = Brand

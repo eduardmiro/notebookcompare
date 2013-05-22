@@ -21,6 +21,8 @@ urlpatterns = patterns('',
     url(r'^brands/$', brands , name='brands'),
     url(r'^brands/view/(?P<brand_name>\w+)/$', brand_detail , name='brand detail'),
     url(r'^brands/view/(?P<brand_name>\w+)/models/$', brand_models , name='brand models'),
+    url(r'^brands/add/$', brands_add , name='add brand'),
+
 
 	#MODELS
     url(r'^models/$', models , name='models'),

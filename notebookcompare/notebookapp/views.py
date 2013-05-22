@@ -50,7 +50,7 @@ def userpanel(request):
 def brands(request):
 	param = { 'titlehead' : "List of all Brands"}
 	param['all_brands'] = Brand.objects.all()
-	return render_to_response('brands.html',param,context_instance=RequestContext(request))
+	return render_to_response('brands/brands.html',param,context_instance=RequestContext(request))
 
 
 #Shows the details of one brand , we retrieve the details and we show it on detailbrand
@@ -64,7 +64,7 @@ def brand_detail(request, brand_name):
 			  'pictureurl' : brand.pictureurl}
 	except:
        	 raise Http404
-    	return render_to_response('detailbrand.html',param,context_instance=RequestContext(request))
+    	return render_to_response('brands/detailbrand.html',param,context_instance=RequestContext(request))
 
 #lists all the models avaibles and we order it by the brand name
 def models(request):
@@ -94,7 +94,7 @@ def model_detail(request, model_name):
 
 	except:
        	 raise Http404
-    	return render_to_response('detailmodel.html',param,context_instance=RequestContext(request))
+    	return render_to_response('models/detailmodel.html',param,context_instance=RequestContext(request))
 
 #show all the models of a specific brand
 def brand_models(request, brand_name):
@@ -117,7 +117,7 @@ def brand_models(request, brand_name):
 def components(request):
 	param = { 'titlehead' : "List of all components"}
 	param['all_components'] = Component.objects.all().order_by('name')
-	return render_to_response('components.html',param,context_instance=RequestContext(request))
+	return render_to_response('components/components.html',param,context_instance=RequestContext(request))
 #list all components details , in this we want to show all the different types of a component (for example all the cpus that have the different computers)
 def component_detail(request, comp_name):
 	try:
@@ -140,7 +140,7 @@ def specifications_detail_all(request):
 		
 	except:
        	 raise Http404
-    	return render_to_response('detailspecifications.html',param,context_instance=RequestContext(request))
+    	return render_to_response('specifications/detailspecifications.html',param,context_instance=RequestContext(request))
 
 #All computers regarding a specific spec
 def specifications_list(request, spec_id):
@@ -164,7 +164,7 @@ def review(request):
 		
 	except:
        	 raise Http404
-    	return render_to_response('review_list.html',param,context_instance=RequestContext(request))
+    	return render_to_response('review/review_list.html',param,context_instance=RequestContext(request))
 
 @login_required
 def review_model_add(request,model_id):
@@ -182,7 +182,7 @@ def review_model_add(request,model_id):
 			  'model': query,
 			  'model_id' : model_id, 
 			  'form':form	}
-    return render(request, 'review_add.html', param ,context_instance=RequestContext(request))
+    return render(request, 'review/review_add.html', param ,context_instance=RequestContext(request))
 
 
 
@@ -195,7 +195,7 @@ def review_model_view(request,model_id):
 		
 	except:
        	 raise Http404
-    	return render_to_response('review_list.html',param,context_instance=RequestContext(request))
+    	return render_to_response('review/review_list.html',param,context_instance=RequestContext(request))
 
 def review_view(request,review_id):
 
@@ -206,7 +206,7 @@ def review_view(request,review_id):
 		
 	except:
        	 raise Http404
-    	return render_to_response('review_view.html',param,context_instance=RequestContext(request))
+    	return render_to_response('review/review_view.html',param,context_instance=RequestContext(request))
 
 
 
@@ -221,8 +221,9 @@ def model_add(request):
     else:
         form = AddModel(user) # An unbound form
     param = { 'titlehead' : "Add Notebook Form",
+			  'ruta': "/models/add/",
 			  'form':form	}
-    return render(request, 'model_add.html', param ,context_instance=RequestContext(request))
+    return render(request, 'add_form.html', param ,context_instance=RequestContext(request))
 
 @login_required
 def components_add(request):
@@ -235,8 +236,9 @@ def components_add(request):
     else:
         form = AddComponent(user) # An unbound form
     param = { 'titlehead' : "Add component Form",
+			  'ruta': "/components/add/",
 			  'form':form	}
-    return render(request, 'component_add.html', param ,context_instance=RequestContext(request))
+    return render(request, 'add_form.html', param ,context_instance=RequestContext(request))
 
 @login_required
 def specifications_add(request):
@@ -249,6 +251,23 @@ def specifications_add(request):
     else:
         form = AddSpecification(user) # An unbound form
     param = { 'titlehead' : "Add Specification Form",
+			  'ruta': "/specifications/add/",
 			  'form':form	}
-    return render(request, 'specification_add.html', param ,context_instance=RequestContext(request))
+    return render(request, 'add_form.html', param ,context_instance=RequestContext(request))
+
+
+@login_required
+def brands_add(request):
+    user = request.user
+    if request.method == 'POST': # If the form has been submitted...
+        form = AddBrand(user,request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            form.save()
+            return HttpResponseRedirect('/brands/') # Redirect after POST
+    else:
+        form = AddBrand(user) # An unbound form
+    param = { 'titlehead' : "Add Brand Form",
+			  'ruta': "/brands/add/",
+			  'form':form	}
+    return render(request, 'add_form.html', param ,context_instance=RequestContext(request))
 
