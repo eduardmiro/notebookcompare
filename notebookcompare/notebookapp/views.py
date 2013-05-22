@@ -70,7 +70,7 @@ def brand_detail(request, brand_name):
 def models(request):
 	param = { 'titlehead' : "List of all Models ordered by Brand"}
 	param['all_models'] = Model.objects.all().order_by('brand')
-	return render_to_response('models.html',param,context_instance=RequestContext(request))
+	return render_to_response('models/models.html',param,context_instance=RequestContext(request))
 
 #Shows the details of a Model, we try if the model exist and give all the details, if not we show a 404 error.
 #as "spec" is many to many we have to get it on diferent variable.
@@ -111,7 +111,7 @@ def brand_models(request, brand_name):
 
 	except:
        	 raise Http404
-    	return render_to_response('detailbrandmodel.html',param,context_instance=RequestContext(request))
+    	return render_to_response('brands/detailbrandmodel.html',param,context_instance=RequestContext(request))
 
 #list all components on the database, on this we want to show CPU, GFX...
 def components(request):
@@ -129,7 +129,7 @@ def component_detail(request, comp_name):
 		
 	except:
        	 raise Http404
-    	return render_to_response('detailcomponent.html',param,context_instance=RequestContext(request))
+    	return render_to_response('components/detailcomponent.html',param,context_instance=RequestContext(request))
 
 #Lists all the different specifications , so here we show all the differents component specifications that we have (all the cpu's, all the gfx...)
 def specifications_detail_all(request):
@@ -153,7 +153,7 @@ def specifications_list(request, spec_id):
 #here we raise the http error if we do not pass the component id (for example AA instead of a number), if it's a number we control the error in the html 
 	except:
        	 raise Http404
-    	return render_to_response('listmodelsspec.html',param,context_instance=RequestContext(request))
+    	return render_to_response('specifications/listmodelsspec.html',param,context_instance=RequestContext(request))
 
 
 def review(request):
@@ -170,12 +170,12 @@ def review(request):
 def review_model_add(request,model_id):
     query = Model.objects.filter(pk=model_id)
     user = request.user
-
+    
     if request.method == 'POST': # If the form has been submitted...
         form = ReviewForm(user,model_id,request.POST) # A form bound to the POST data
         if form.is_valid(): # All validation rules pass
             form.save()
-            return HttpResponseRedirect('/review/') # Redirect after POST
+            return HttpResponseRedirect('/models/view/'+ str(query[0])) # Redirect after POST
     else:
         form = ReviewForm(user,model_id) # An unbound form
     param = { 'titlehead' : "Formulari Review",

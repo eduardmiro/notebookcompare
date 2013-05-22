@@ -11,8 +11,8 @@
 	<h2> Welcome {% if user.username %}{{ user.username }}{% else %}Guest{% endif %} to our notebookcompare application!</h2>
 	<h3>With this app you can:</h3>
 	<li><a href="/brands/">View a list with all our brands </a></li>
-	<li><a href="/brands/ASUS">View the brand details (for example ASUS) </a></li>
-	<li><a href="/brands/ASUS/models/">View all the brand notebook models (for example ASUS) </a></li>
+	<li><a href="/brands/view/ASUS">View the brand details (for example ASUS) </a></li>
+	<li><a href="/brands/view/ASUS/models/">View all the brand notebook models (for example ASUS) </a></li>
 	</br>
 	<li><a href="/models/">View a list with all our models </a></li>
 	<li><a href="/models/view/Z930">View the notebook details details (for example Z930) </a></li>
@@ -38,15 +38,12 @@
 	<li><a href="/models/add/">Add a new model </a></li>	
 	<li><a href="/components/add/">Add a new component </a></li>
 	<li><a href="/specifications/add/">Add a new specification</a></li>
-	
-
-	<h3> Pendent</h3>
-
-	
-	
 	<li><a href="/brands/add/">Add a new brand</a></li>
 
 
+	
+
+	<h3> Pendent</h3>
 
 	<li><a href="/review/3/modify/id/">Modify a review </a></li>
 	<li><a href="/review/3/delete/id/">Delete a review </a></li>
