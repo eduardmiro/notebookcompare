@@ -40,6 +40,12 @@ def register(request):
         'form': form,
     })
 
+@login_required
+def userpanel(request):
+	param = { 'titlehead' : "User Panel"}
+	return render_to_response('userpanel.html',param,context_instance=RequestContext(request))
+
+
 #lists all the brands in the DB
 def brands(request):
 	param = { 'titlehead' : "List of all Brands"}
@@ -233,8 +239,16 @@ def components_add(request):
     return render(request, 'component_add.html', param ,context_instance=RequestContext(request))
 
 @login_required
-def userpanel(request):
-	param = { 'titlehead' : "User Panel"}
-	return render_to_response('userpanel.html',param,context_instance=RequestContext(request))
-
+def specifications_add(request):
+    user = request.user
+    if request.method == 'POST': # If the form has been submitted...
+        form = AddSpecification(user,request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            form.save()
+            return HttpResponseRedirect('/specifications/') # Redirect after POST
+    else:
+        form = AddSpecification(user) # An unbound form
+    param = { 'titlehead' : "Add Specification Form",
+			  'form':form	}
+    return render(request, 'specification_add.html', param ,context_instance=RequestContext(request))
 

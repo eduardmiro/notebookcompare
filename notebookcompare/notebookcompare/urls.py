@@ -19,17 +19,25 @@ urlpatterns = patterns('',
     url(r'^$', mainpage, name='home'),
 	#BRANDS
     url(r'^brands/$', brands , name='brands'),
-    url(r'^brands/(?P<brand_name>\w+)/$', brand_detail , name='brand detail'),
-    url(r'^brands/(?P<brand_name>\w+)/models/$', brand_models , name='brand models'),
+    url(r'^brands/view/(?P<brand_name>\w+)/$', brand_detail , name='brand detail'),
+    url(r'^brands/view/(?P<brand_name>\w+)/models/$', brand_models , name='brand models'),
+
 	#MODELS
     url(r'^models/$', models , name='models'),
     url(r'^models/view/(?P<model_name>[\w\-]+)/$', model_detail , name='model detail'),
+    url(r'^models/add/$', model_add , name='add model'),
+
 	#COMPONENTS
     url(r'^components/$', components , name='components'),
     url(r'^components/view/(?P<comp_name>\w+)/$', component_detail , name='Component Detail'),
+    url(r'^components/add/$', components_add , name='add component'),
+
+
+
 	#Specifications
     url(r'^specifications/$', specifications_detail_all , name='Specification Detail all'),
     url(r'^specifications/view/(?P<spec_id>\w+)/$', specifications_list , name='specifications list'),
+    url(r'^specifications/add/$', specifications_add , name='add specification'),
 
 	#login user
 	#Specifications
@@ -37,7 +45,7 @@ urlpatterns = patterns('',
     url(r'^login/$', 'django.contrib.auth.views.login'),
     url(r'^logout/$', logout_view),
     url(r'^register/$',register),
-
+    url(r'^userpanel/$',userpanel),
 
 	#web 2.0
 #reviews
@@ -47,9 +55,9 @@ urlpatterns = patterns('',
     url(r'^review/(?P<model_id>\d)/add/$', review_model_add , name='review model'),
 
 #models
-    url(r'^models/add/$', model_add , name='add model'),
-    url(r'^components/add/$', components_add , name='add component'),
 
-    url(r'^userpanel/$',userpanel),
+#Components
+
+
 
 )
