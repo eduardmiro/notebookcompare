@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from notebookapp.views import *
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from django.views.generic import DetailView, ListView, UpdateView
 admin.autodiscover()
 
 from django.conf.urls.defaults import *
@@ -40,6 +41,7 @@ urlpatterns = patterns('',
     url(r'^specifications/$', specifications_detail_all , name='Specification Detail all'),
     url(r'^specifications/view/(?P<spec_id>\w+)/$', specifications_list , name='specifications list'),
     url(r'^specifications/add/$', specifications_add , name='add specification'),
+    url(r'^specifications/edit/(?P<pk>\d+)/$',UpdateView.as_view(model = Specification,template_name = 'add_form.html',form_class = AddSpecification),name='Specifications Edit'),
 
 	#login user
 	#Specifications
@@ -55,10 +57,6 @@ urlpatterns = patterns('',
     url(r'^review/(?P<model_id>\d)/view/$', review_model_view , name='view review model'),
     url(r'^review/view/(?P<review_id>\d)/$', review_view , name='view review'),
     url(r'^review/(?P<model_id>\d)/add/$', review_model_add , name='review model'),
-
-#models
-
-#Components
 
 
 

@@ -10,6 +10,7 @@ from django import forms
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import UpdateView
 #imports 
 from forms import *
 from notebookapp.models import Brand
@@ -221,9 +222,10 @@ def model_add(request):
     else:
         form = AddModel(user) # An unbound form
     param = { 'titlehead' : "Add Notebook Form",
-			  'ruta': "/models/add/",
 			  'form':form	}
     return render(request, 'add_form.html', param ,context_instance=RequestContext(request))
+
+
 
 @login_required
 def components_add(request):
@@ -236,7 +238,6 @@ def components_add(request):
     else:
         form = AddComponent(user) # An unbound form
     param = { 'titlehead' : "Add component Form",
-			  'ruta': "/components/add/",
 			  'form':form	}
     return render(request, 'add_form.html', param ,context_instance=RequestContext(request))
 
@@ -244,14 +245,13 @@ def components_add(request):
 def specifications_add(request):
     user = request.user
     if request.method == 'POST': # If the form has been submitted...
-        form = AddSpecification(user,request.POST) # A form bound to the POST data
+        form = AddSpecification(request.POST) # A form bound to the POST data
         if form.is_valid(): # All validation rules pass
             form.save()
             return HttpResponseRedirect('/specifications/') # Redirect after POST
     else:
-        form = AddSpecification(user) # An unbound form
+        form = AddSpecification() # An unbound form
     param = { 'titlehead' : "Add Specification Form",
-			  'ruta': "/specifications/add/",
 			  'form':form	}
     return render(request, 'add_form.html', param ,context_instance=RequestContext(request))
 
@@ -267,7 +267,6 @@ def brands_add(request):
     else:
         form = AddBrand(user) # An unbound form
     param = { 'titlehead' : "Add Brand Form",
-			  'ruta': "/brands/add/",
 			  'form':form	}
     return render(request, 'add_form.html', param ,context_instance=RequestContext(request))
 
