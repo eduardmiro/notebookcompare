@@ -48,6 +48,7 @@ urlpatterns = patterns('',
 
 #models
     url(r'^models/add/$', model_add , name='add model'),
+    url(r'^components/add/$', components_add , name='add component'),
 
     url(r'^userpanel/$',userpanel),
 

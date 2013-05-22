@@ -20,3 +20,9 @@ class AddModel(ModelForm):
 	self.fields['useradd'].queryset = User.objects.filter(pk=user.pk)
     class Meta:
         model = Model
+
+class AddComponent(ModelForm):
+    def __init__(self, user, *args, **kwargs):
+        super(AddComponent, self).__init__(*args, **kwargs)
+    class Meta:
+        model = Component

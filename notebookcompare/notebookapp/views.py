@@ -214,9 +214,23 @@ def model_add(request):
             return HttpResponseRedirect('/models/') # Redirect after POST
     else:
         form = AddModel(user) # An unbound form
-    param = { 'titlehead' : "Formulari Afegir Portatil",
+    param = { 'titlehead' : "Add Notebook Form",
 			  'form':form	}
     return render(request, 'model_add.html', param ,context_instance=RequestContext(request))
+
+@login_required
+def components_add(request):
+    user = request.user
+    if request.method == 'POST': # If the form has been submitted...
+        form = AddComponent(user,request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            form.save()
+            return HttpResponseRedirect('/components/') # Redirect after POST
+    else:
+        form = AddComponent(user) # An unbound form
+    param = { 'titlehead' : "Add component Form",
+			  'form':form	}
+    return render(request, 'component_add.html', param ,context_instance=RequestContext(request))
 
 @login_required
 def userpanel(request):
