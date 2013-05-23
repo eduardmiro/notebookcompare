@@ -8,33 +8,23 @@
 <table id="flex1" width="auto" style="display:none">
 		<thead>
 			<tr>
-				<th width="100">User</th>
-				<th width="100">Date</th>
-				<th width="100">Rating</th>
-				<th width="300">Comment</th>
-				<th width="100">Price found</th>
-				<th width="100">Shop Name</th>
+				<th width="100">Brand</th>
+				<th width="100">Name</th>
+				<th width="100">Price</th>
 				<th width="100">View</th>
 				<th width="100">Edit</th>
 			</tr>
 		</thead>
-
-
-
-		<B>{{ model.brand}}</b>  <B>{{ model.name }}</b>  Price: {{ model.price }} €   <a href="/models/view/{{ model.name  }}"> Notebook Details </a> 
 		
 		</br>
 	
 		{% for model in all_models %}
 
 			<tr>
-			<td>{{ review.user }} </td>
-			<td>{{ review.date }} </td>
-			<td>{{ review.rating }} </td>
-			<td>{{ review.comment }} </td>
-			<td>{{ review.price_found }} </td>
-			<td>{{ review.shop_name }} </td>
-			<td><a href="/models/view/{{ review.pk }}"><img src="{% static "imatges/lupa.png" %}" width="30"></img></a> </td>
+			<td>{{ model.brand }} </td>
+			<td>{{ model.name }} </td>
+			<td>{{ model.price }} </td>
+			<td><a href="/models/view/{{ model.name  }}"><img src="{% static "imatges/lupa.png" %}" width="30"></img></a> </td>
 			<td><a href="/models/edit/{{ review.pk }}"><img src="{% static "imatges/pencil.png" %}" width="30"></img></a> </td></tr>			
 			
 			{% empty %}
