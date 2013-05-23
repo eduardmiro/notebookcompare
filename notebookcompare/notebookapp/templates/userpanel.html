@@ -1,12 +1,11 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 
 {% block content %}
 
-	Change Password </ br>
-	<a href="/userpanel/my-reviews/">list user reviews</a> </ br>
-	<a href="/userpanel/my-laptops/">list user laptops</a> </ br>
-	
+	<a href="/userpanel/changepassword"><img src="{% static "imatges/key-icon.png" %}" width="150"></a></img> 
+	<a href="/userpanel/my-reviews/"><img src="{% static "imatges/user-reviews.jpg" %}" width="150"></a></img>
+	<a href="/userpanel/my-laptops/"><img src="{% static "imatges/usercomputer.png" %}" width="150"></a> </img>
 
 
 {% endblock %}
