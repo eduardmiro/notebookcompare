@@ -280,4 +280,16 @@ def myreviews(request):
 	except:
        	 raise Http404
     	return render_to_response('userpanel/myreviews.html',param,context_instance=RequestContext(request))
+@login_required
+def mylaptops(request):
+	try:	
+		user = request.user
+		query = Models.objects.filter(useradd=user)
+		param = { 'titlehead' : "Your Reviews ",
+			  'review' : query	}
+		
+	except:
+       	 raise Http404
+    	return render_to_response('userpanel/mylaptops.html',param,context_instance=RequestContext(request))
+
 

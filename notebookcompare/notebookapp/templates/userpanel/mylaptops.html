@@ -18,7 +18,14 @@
 				<th width="100">Edit</th>
 			</tr>
 		</thead>
-		{% for review in review %}
+
+
+
+		<B>{{ model.brand}}</b>  <B>{{ model.name }}</b>  Price: {{ model.price }} €   <a href="/models/view/{{ model.name  }}"> Notebook Details </a> 
+		
+		</br>
+	
+		{% for model in all_models %}
 
 			<tr>
 			<td>{{ review.user }} </td>
@@ -27,10 +34,12 @@
 			<td>{{ review.comment }} </td>
 			<td>{{ review.price_found }} </td>
 			<td>{{ review.shop_name }} </td>
-			<td><a href="/review/view/{{ review.pk }}"><img src="{% static "imatges/lupa.png" %}" width="30"></img></a> </td>
-			<td><a href="/review/edit/{{ review.pk }}"><img src="{% static "imatges/pencil.png" %}" width="30"></img></a> </td></tr>			
+			<td><a href="/models/view/{{ review.pk }}"><img src="{% static "imatges/lupa.png" %}" width="30"></img></a> </td>
+			<td><a href="/models/edit/{{ review.pk }}"><img src="{% static "imatges/pencil.png" %}" width="30"></img></a> </td></tr>			
 			
-		{% endfor %}
+			{% empty %}
+    		Sorry, we have no models!
+	{% endfor %}
 </table>
 </div>
        <script type="text/javascript">

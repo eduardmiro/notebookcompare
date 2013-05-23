@@ -51,6 +51,7 @@ urlpatterns = patterns('',
     url(r'^register/$',register),
     url(r'^userpanel/$',userpanel),
     url(r'^userpanel/my-reviews$',myreviews),
+    url(r'^userpanel/my-laptops$',mylaptops),
 
 	#web 2.0
 #reviews
