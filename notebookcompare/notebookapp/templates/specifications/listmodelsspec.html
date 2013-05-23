@@ -8,7 +8,7 @@
 		Listing all computers found:
 		</br>
 		{% for component in spec %}
-			{{ component.name }} <a href="/models/view/{{component.name}}"> Model Details </a></br>
+			{{ component.name }} <a href="/models/view/{{component.pk}}"> Model Details </a></br>
 		
 			{% empty %}
     		Sorry, we have no models with this specification!

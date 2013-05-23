@@ -73,11 +73,11 @@ def models(request):
 
 #Shows the details of a Model, we try if the model exist and give all the details, if not we show a 404 error.
 #as "spec" is many to many we have to get it on diferent variable.
-def model_detail(request, model_name):
+def model_detail(request, pk):
 	try:
 		
    		
-		model= Model.objects.get(name=model_name)
+		model= Model.objects.get(pk=pk)
 		review = Review.objects.filter(model=model.pk)
 		specs = model.specification.all()
 		param = { 'titlehead' : "Model Details",
@@ -118,12 +118,10 @@ def components(request):
 	param['all_components'] = Component.objects.all().order_by('name')
 	return render_to_response('components/components.html',param,context_instance=RequestContext(request))
 #list all components details , in this we want to show all the different types of a component (for example all the cpus that have the different computers)
-def component_detail(request, comp_name):
+def component_detail(request,pk):
 	try:
-		spec= Component.objects.get(name=comp_name)
-		query = Specification.objects.filter(component=spec.pk)
-
-		param = { 'titlehead' : "List of all "+  comp_name,
+		query = Specification.objects.filter(component=pk)
+		param = { 'titlehead' : "List of Specification",
 			  'spec':query	}
 		
 	except:

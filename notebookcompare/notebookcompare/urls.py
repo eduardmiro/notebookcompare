@@ -27,12 +27,12 @@ urlpatterns = patterns('',
 
 	#MODELS
     url(r'^models/$', models , name='models'),
-    url(r'^models/view/(?P<model_name>[\w\-]+)/$', model_detail , name='model detail'),
+    url(r'^models/view/(?P<pk>\d+)/$', model_detail , name='model detail'),
     url(r'^models/add/$', model_add , name='add model'),
 
 	#COMPONENTS
     url(r'^components/$', components , name='components'),
-    url(r'^components/view/(?P<comp_name>\w+)/$', component_detail , name='Component Detail'),
+    url(r'^components/view/(?P<pk>\d+)/$', component_detail , name='Component Detail'),
     url(r'^components/add/$', components_add , name='add component'),
 
 
