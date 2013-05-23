@@ -279,5 +279,5 @@ def myreviews(request):
 		
 	except:
        	 raise Http404
-    	return render_to_response('review/review_list.html',param,context_instance=RequestContext(request))
+    	return render_to_response('userpanel/myreviews.html',param,context_instance=RequestContext(request))
 
