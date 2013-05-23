@@ -10,7 +10,9 @@ class ReviewForm(ModelForm):
 	self.fields['model'].queryset = Model.objects.filter(pk=model_id)
     class Meta:
         model = Review
-	
+class ReviewFormEdit(ModelForm):
+    class Meta:
+        model = Review
 
 
 class AddModel(ModelForm):

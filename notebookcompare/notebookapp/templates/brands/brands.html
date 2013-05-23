@@ -13,9 +13,10 @@
 		<a href="/brands/view/{{ brand.name }}/models/"> Brand Models </a> 
 		
 		</br>
-
+	{% empty %}
+    		Sorry, we have no Brands!
 	{% endfor %}
-
+	</br><a href="add/"> Add a new brand </a>
 
 {% endblock %}
 

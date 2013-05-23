@@ -3,9 +3,11 @@
 <head>
 
 	<title>{{ titlehead}} - Notebook Compare </title>
-	<link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}"/>
-     	<script type="text/javascript"
-            src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+{% block head %}{% endblock %}
+    
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}"/>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  
         <script type="text/javascript" src="{% static "js/flexigrid.pack.js" %}"></script>
 	<link rel="stylesheet" type="text/css" href="{% static "css/flexigrid.pack.css" %}" />
 
@@ -15,7 +17,7 @@
 
 <div id="Header">Notebook Compare  </div>
 <div align="right">{% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}. Thanks for logging in. <a href="/logout/">Logout</a></p>
+    <p>Welcome, {{ user.username }}. Thanks for logging in. <a href="/logout/">Logout  </a><a href="/userpanel/">User Panel  </a></p>
 {% else %}
     <p>Welcome, new user. Please <a href="/login/">log in</a> or <a href="/register/"> register   </a> </p>
 {% endif %} </div>

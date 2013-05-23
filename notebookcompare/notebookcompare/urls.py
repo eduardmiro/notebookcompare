@@ -59,6 +59,7 @@ urlpatterns = patterns('',
     url(r'^review/(?P<model_id>\d)/view/$', review_model_view , name='view review model'),
     url(r'^review/view/(?P<review_id>\d)/$', review_view , name='view review'),
     url(r'^review/(?P<model_id>\d)/add/$', review_model_add , name='review model'),
+    url(r'^review/edit/(?P<pk>\d+)/$',UpdateView.as_view(model = Review,template_name = 'add_form.html',form_class = ReviewFormEdit),name='Specifications Edit'),
 
 
 
