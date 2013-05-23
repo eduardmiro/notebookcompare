@@ -269,4 +269,15 @@ def brands_add(request):
     param = { 'titlehead' : "Add Brand Form",
 			  'form':form	}
     return render(request, 'add_form.html', param ,context_instance=RequestContext(request))
+@login_required
+def myreviews(request):
+	try:	
+		user = request.user
+		query = Review.objects.filter(user=user)
+		param = { 'titlehead' : "Your Reviews ",
+			  'review' : query	}
+		
+	except:
+       	 raise Http404
+    	return render_to_response('review/review_list.html',param,context_instance=RequestContext(request))
 

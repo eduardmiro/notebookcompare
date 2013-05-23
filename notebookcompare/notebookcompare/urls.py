@@ -44,12 +44,13 @@ urlpatterns = patterns('',
     url(r'^specifications/edit/(?P<pk>\d+)/$',UpdateView.as_view(model = Specification,template_name = 'add_form.html',form_class = AddSpecification),name='Specifications Edit'),
 
 	#login user
-	#Specifications
+
 
     url(r'^login/$', 'django.contrib.auth.views.login'),
     url(r'^logout/$', logout_view),
     url(r'^register/$',register),
     url(r'^userpanel/$',userpanel),
+    url(r'^userpanel/my-reviews$',myreviews),
 
 	#web 2.0
 #reviews
