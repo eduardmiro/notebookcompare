@@ -4,14 +4,10 @@ from datetime import date
 
 
 # Create your models here.
-class Country(models.Model):
-	name = models.TextField(max_length=30)
-	def __unicode__ (self):
-		return self.name
 
 class Brand(models.Model):
 	name = models.CharField(max_length=120)
-	country = models.ForeignKey(Country)
+	country = models.TextField(max_length=30)
 	web = models.CharField(max_length=100)
 	pictureurl = models.CharField(max_length=100)
 	def __unicode__ (self):

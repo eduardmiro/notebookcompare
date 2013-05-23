@@ -13,8 +13,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import UpdateView
 #imports 
 from forms import *
-from notebookapp.models import Brand
-from notebookapp.models import Model
 from notebookapp.models import *
 from django.http import Http404
 # 
@@ -268,7 +266,7 @@ def brands_add(request):
         form = AddBrand(user) # An unbound form
     param = { 'titlehead' : "Add Brand Form",
 			  'form':form	}
-    return render(request, 'add_form.html', param ,context_instance=RequestContext(request))
+    return render(request, 'brands/add_form.html', param ,context_instance=RequestContext(request))
 @login_required
 def myreviews(request):
 	try:	
@@ -280,6 +278,7 @@ def myreviews(request):
 	except:
        	 raise Http404
     	return render_to_response('userpanel/myreviews.html',param,context_instance=RequestContext(request))
+
 @login_required
 def mylaptops(request):
 	try:	
