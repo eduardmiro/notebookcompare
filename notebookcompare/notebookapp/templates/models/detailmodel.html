@@ -46,7 +46,6 @@
 				<th width="300">Comment</th>
 				<th width="100">Price found</th>
 				<th width="100">Shop Name</th>
-				<th width="100">Shop URL</th>
 				<th width="100">View</th>
 			</tr>
 		</thead>
@@ -59,7 +58,6 @@
 			<td>{{ review.comment }} </td>
 			<td>{{ review.price_found }} </td>
 			<td>{{ review.shop_name }} </td>
-			<td>{{ review.shop_url }} </td>
 			<td><a href="/review/view/{{ review.pk }}"><img src="{% static "imatges/lupa.png" %}" width="30"></img></a> </td></tr>
 			
 		{% endfor %}
