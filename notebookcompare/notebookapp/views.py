@@ -225,14 +225,13 @@ def model_add(request):
 
 @login_required
 def components_add(request):
-    user = request.user
     if request.method == 'POST': # If the form has been submitted...
-        form = AddComponent(user,request.POST) # A form bound to the POST data
+        form = AddComponent(request.POST) # A form bound to the POST data
         if form.is_valid(): # All validation rules pass
             form.save()
             return HttpResponseRedirect('/components/') # Redirect after POST
     else:
-        form = AddComponent(user) # An unbound form
+        form = AddComponent() # An unbound form
     param = { 'titlehead' : "Add component Form",
 			  'form':form	}
     return render(request, 'add_form.html', param ,context_instance=RequestContext(request))
@@ -281,9 +280,11 @@ def myreviews(request):
 def mylaptops(request):
 	try:	
 		user = request.user
-		query = Models.objects.filter(useradd=user)
-		param = { 'titlehead' : "Your Reviews ",
-			  'review' : query	}
+		param = { 'titlehead' : "Your Laptops",
+			  	}
+		query = Model.objects.filter(useradd=user.pk)
+		param['all_models'] = query
+		print param
 		
 	except:
        	 raise Http404

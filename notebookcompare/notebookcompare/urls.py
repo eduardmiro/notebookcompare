@@ -34,7 +34,7 @@ urlpatterns = patterns('',
     url(r'^components/$', components , name='components'),
     url(r'^components/view/(?P<pk>\d+)/$', component_detail , name='Component Detail'),
     url(r'^components/add/$', components_add , name='add component'),
-
+    url(r'^components/edit/(?P<pk>\d+)/$',UpdateView.as_view(model = Component,template_name = 'add_form.html',form_class = AddComponent),name='Component Edit'),
 
 
 	#Specifications

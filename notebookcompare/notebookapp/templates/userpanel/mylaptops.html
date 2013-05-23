@@ -1,5 +1,8 @@
 {% extends "base.html" %}
-
+{% block head %}
+     	<script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+{% endblock %}
 {% load staticfiles %}
 {% block content %}
 
@@ -24,8 +27,8 @@
 			<td>{{ model.brand }} </td>
 			<td>{{ model.name }} </td>
 			<td>{{ model.price }} </td>
-			<td><a href="/models/view/{{ model.name  }}"><img src="{% static "imatges/lupa.png" %}" width="30"></img></a> </td>
-			<td><a href="/models/edit/{{ review.pk }}"><img src="{% static "imatges/pencil.png" %}" width="30"></img></a> </td></tr>			
+			<td><a href="/models/view/{{ model.pk  }}"><img src="{% static "imatges/lupa.png" %}" width="30"></img></a> </td>
+			<td><a href="/models/edit/{{ model.pk }}"><img src="{% static "imatges/pencil.png" %}" width="30"></img></a> </td></tr>			
 			
 			{% empty %}
     		Sorry, we have no models!
