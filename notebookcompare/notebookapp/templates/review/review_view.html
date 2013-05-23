@@ -4,12 +4,18 @@
 {% block content %}
 	
 				<table>
-		<th>Reviews:</th>
+
 		{% for review in review %}
-			<tr><td>{{ review.model }} </td><td>{{ review.rating }} </td> <td>{{ review.comment }} </td>
-			<td>{{ review.user }} </td><td>{{ review.date }} </td>
-			<td>{{ review.price_found }} </td><td>{{ review.shop_name }} </td>
-			<td>{{ review.shop_url }} </td><td><a href="/models/{{ review.model }}">View model</a> </td></tr>
+			<b> User: </b> {{ review.user }} <br/>
+			<b> Date: </b> {{ review.date }} <br/>
+			<b> Model: </b> {{ review.model }} <br/>
+			<b> Rating </b> {{ review.rating }}  <br/> 
+			<b> Comment </b> {{ review.comment }}  <br/>
+			<b> Price found: </b> {{ review.price_found }} <br/>
+			
+			<b> Shop: </b><a href="http://{{ review.shop_url }}"> {{ review.shop_name }}</a> <br/>
+			  <br/>
+			<a href="/models/view/{{ review.model }}">View model</a> </td></tr>
 			
 		{% endfor %}
 </table>
