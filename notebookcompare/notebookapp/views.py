@@ -167,12 +167,11 @@ def review(request):
 def review_model_add(request,model_id):
     query = Model.objects.filter(pk=model_id)
     user = request.user
-    
     if request.method == 'POST': # If the form has been submitted...
         form = ReviewForm(user,model_id,request.POST) # A form bound to the POST data
         if form.is_valid(): # All validation rules pass
             form.save()
-            return HttpResponseRedirect('/models/view/'+ str(query[0])) # Redirect after POST
+            return HttpResponseRedirect('/models/view/'+ model_id) # Redirect after POST
     else:
         form = ReviewForm(user,model_id) # An unbound form
     param = { 'titlehead' : "Formulari Review",
@@ -302,6 +301,21 @@ def review_delete(request,pk):
     user=request.user
 
     if review.user.pk != user.pk:
-        return render_to_response('mainpage.html',param)
+        return render_to_response('mainpage.html',param,context_instance=RequestContext(request))
     review.delete()
-    return render_to_response('mainpage.html',param2)
+    return render_to_response('mainpage.html',param2,context_instance=RequestContext(request))
+
+@login_required
+def models_delete(request,pk):
+    model=Model.objects.get(pk=pk)
+    
+    param = { 'titlehead' : "ERROR",
+	      'state': "You have no permission to delete this Model"}
+    param2 = { 'titlehead' : "Success",
+	      'state': "Model deleted!"}
+    user=request.user
+
+    if model.useradd.pk != user.pk:
+        return render_to_response('mainpage.html',param,context_instance=RequestContext(request))
+    model.delete()
+    return render_to_response('mainpage.html',param2,context_instance=RequestContext(request))

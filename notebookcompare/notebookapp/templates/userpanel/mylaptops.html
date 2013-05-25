@@ -16,6 +16,7 @@
 				<th width="100">Price</th>
 				<th width="100">View</th>
 				<th width="100">Edit</th>
+				<th width="100">Delete</th>
 			</tr>
 		</thead>
 		
@@ -28,7 +29,7 @@
 			<td>{{ model.name }} </td>
 			<td>{{ model.price }} </td>
 			<td><a href="/models/view/{{ model.pk  }}"><img src="{% static "imatges/lupa.png" %}" width="30"></img></a> </td>
-			<td><a href="/models/edit/{{ model.pk }}"><img src="{% static "imatges/pencil.png" %}" width="30"></img></a> </td></tr>			
+			<td><a href="/models/edit/{{ model.pk }}"><img src="{% static "imatges/pencil.png" %}" width="30"></img></a> </td>			<td><a href="/models/delete/{{ model.pk }}"><img src="{% static "imatges/delete.png" %}" width="30"></img></a> </td></tr>			
 			
 			{% empty %}
     		Sorry, you have not got any models! 

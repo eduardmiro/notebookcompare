@@ -30,7 +30,7 @@ urlpatterns = patterns('',
     url(r'^models/view/(?P<pk>\d+)/$', model_detail , name='model detail'),
     url(r'^models/add/$', model_add , name='add model'),
     url(r'^models/edit/(?P<pk>\d+)/$',UpdateView.as_view(model = Model,template_name = 'add_form_user.html',form_class = ModelFormEdit, success_url="/userpanel/my-laptops/"),name='laptop edit'),
-
+    url(r'^models/delete/(?P<pk>\d+)/$', models_delete , name='delete model'),
 
 	#COMPONENTS
     url(r'^components/$', components , name='components'),
@@ -62,6 +62,6 @@ urlpatterns = patterns('',
     url(r'^review/view/(?P<review_id>\d)/$', review_view , name='view review'),
     url(r'^review/(?P<model_id>\d)/add/$', review_model_add , name='review model'),
     url(r'^review/edit/(?P<pk>\d+)/$',UpdateView.as_view(model = Review,template_name = 'add_form_user.html',form_class = ReviewFormEdit, success_url="/userpanel/my-reviews/"),name='review edit'),
-    url(r'^review/delete/(?P<pk>\d+)/$', review_delete , name='view review'),
+    url(r'^review/delete/(?P<pk>\d+)/$', review_delete , name='delete review'),
 
 )
