@@ -21,6 +21,7 @@ class Component(models.Model):
 class Specification (models.Model):
 	name = models.CharField(max_length=100)
 	component = models.ForeignKey(Component)
+	user = models.ForeignKey(User)
 	def __unicode__ (self):
 		return self.component.name+" - " +self.name
 	
@@ -30,7 +31,7 @@ class Model(models.Model):
 	price = models.IntegerField()
 	brand = models.ForeignKey(Brand)
 	specification = models.ManyToManyField(Specification)
-	useradd = models.ForeignKey(User)
+	user = models.ForeignKey(User)
 	pictureurl = models.CharField(max_length=100)
 	def __unicode__ (self):
 		return self.name

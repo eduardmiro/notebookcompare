@@ -4,7 +4,7 @@ from notebookapp.views import *
 from django.contrib import admin
 from django.views.generic import DetailView, ListView, UpdateView
 admin.autodiscover()
-
+from notebookapp.views import APIBrandList, APIBrandDetail, APIModelList, APIModelDetail, APIComponentList, APIComponentDetail, APISpecificationList, APISpecificationDetail
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
@@ -65,3 +65,18 @@ urlpatterns = patterns('',
     url(r'^review/delete/(?P<pk>\d+)/$', review_delete , name='delete review'),
 
 )
+
+#RESTful
+urlpatterns += patterns('',
+    url(r'^api/brands/$', APIBrandList.as_view(), name='brand-list'),
+    url(r'^api/brands/(?P<pk>\d+)/$', APIBrandDetail.as_view(), name='brand-detail'),
+    url(r'^api/models/$', APIModelList.as_view(), name='model-list'),
+    url(r'^api/models/(?P<pk>\d+)/$', APIModelDetail.as_view(), name='model-detail'),
+    url(r'^api/components/$', APIComponentList.as_view(), name='component-list'),
+    url(r'^api/components/(?P<pk>\d+)/$', APIComponentDetail.as_view(), name='component-detail'),
+    url(r'^api/specifications/$', APISpecificationList.as_view(), name='specification-list'),
+    url(r'^api/specifications/(?P<pk>\d+)/$', APISpecificationDetail.as_view(), name='specification-detail'),
+)
+
+
+
