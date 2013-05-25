@@ -21,6 +21,7 @@ class AddModel(ModelForm):
         super(AddModel, self).__init__(*args, **kwargs)
 	self.fields['useradd'].empty_label = None
 	self.fields['useradd'].queryset = User.objects.filter(pk=user.pk)
+	self.fields['useradd'].label = "Added by:"
     class Meta:
         model = Model
 class ModelFormEdit(ModelForm):
