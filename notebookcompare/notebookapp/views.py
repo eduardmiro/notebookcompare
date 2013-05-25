@@ -180,8 +180,6 @@ def review_model_add(request,model_id):
 			  'form':form	}
     return render(request, 'review/review_add.html', param ,context_instance=RequestContext(request))
 
-
-
 def review_model_view(request,model_id):
 
 	try:
