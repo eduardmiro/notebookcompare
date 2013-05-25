@@ -58,10 +58,10 @@ urlpatterns = patterns('',
 	#web 2.0
 #reviews
     url(r'^review/$', review , name='review',),
-    url(r'^review/(?P<model_id>\d)/view/$', review_model_view , name='view review model'),
+    url(r'^review/(?P<model_id>\d)/view/$', review_model_view , name='view list of reviews'),
     url(r'^review/view/(?P<review_id>\d)/$', review_view , name='view review'),
     url(r'^review/(?P<model_id>\d)/add/$', review_model_add , name='review model'),
     url(r'^review/edit/(?P<pk>\d+)/$',UpdateView.as_view(model = Review,template_name = 'add_form_user.html',form_class = ReviewFormEdit, success_url="/userpanel/my-reviews/"),name='review edit'),
-
+    url(r'^review/delete/(?P<pk>\d+)/$', review_delete , name='view review'),
 
 )

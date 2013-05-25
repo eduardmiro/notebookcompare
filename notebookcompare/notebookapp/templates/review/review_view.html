@@ -15,7 +15,7 @@
 			
 			<b> Shop: </b><a href="http://{{ review.shop_url }}"> {{ review.shop_name }}</a> <br/>
 			  <br/>
-			<a href="/models/view/{{ review.model }}">View model</a> </td></tr>
+			<a href="/models/view/{{ review.model.pk }}">View model</a> </td></tr>
 			
 		{% endfor %}
 </table>

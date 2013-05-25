@@ -290,4 +290,18 @@ def mylaptops(request):
        	 raise Http404
     	return render_to_response('userpanel/mylaptops.html',param,context_instance=RequestContext(request))
 
+#Delete Functions
+@login_required
+def review_delete(request,pk):
+    review=Review.objects.get(pk=pk)
+    
+    param = { 'titlehead' : "ERROR",
+	      'state': "You have no permission to delete this review"}
+    param2 = { 'titlehead' : "Success",
+	      'state': "Review deleted!"}
+    user=request.user
 
+    if review.user.pk != user.pk:
+        return render_to_response('mainpage.html',param)
+    review.delete()
+    return render_to_response('mainpage.html',param2)
