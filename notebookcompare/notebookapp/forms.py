@@ -14,7 +14,7 @@ class ReviewForm(ModelForm):
 class ReviewFormEdit(ModelForm):
     class Meta:
         model = Review
-
+	exclude = ('model','user')
 
 class AddModel(ModelForm):
     def __init__(self, user, *args, **kwargs):
@@ -23,6 +23,10 @@ class AddModel(ModelForm):
 	self.fields['useradd'].queryset = User.objects.filter(pk=user.pk)
     class Meta:
         model = Model
+class ModelFormEdit(ModelForm):
+    class Meta:
+        model = Model
+	exclude = ('useradd')
 
 class AddComponent(ModelForm):
     class Meta:
