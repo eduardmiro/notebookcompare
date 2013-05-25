@@ -45,6 +45,10 @@ class Review(models.Model):
 	price_found=models.CharField(max_length=8,blank=True,null=True)
 	shop_name=models.CharField(max_length=30,blank=True,null=True)
 	shop_url=models.CharField(max_length=100,blank=True,null=True)
+	shop_city = models.CharField(max_length=100,blank=True, null=True)        
+        shop_state = models.CharField(max_length=100,blank=True, null=True)
+        shop_country = models.CharField(max_length=100,blank=True, null=True)
+	shop_zip = models.CharField(max_length=100,blank=True, null=True)
 	def __unicode__ (self):
 		return self.user
 
