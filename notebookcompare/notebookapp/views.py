@@ -228,7 +228,7 @@ def model_add(request):
 def components_add(request):
 	user = request.user
 	if request.method == 'POST':  # If the form has been submitted...
-		form = AddComponent(request.POST)  # A form bound to the POST data
+		form = AddComponent(user,request.POST)  # A form bound to the POST data
 		if form.is_valid():  # All validation rules pass
 			form.save()
 			return HttpResponseRedirect('/components/')  # Redirect after POST
@@ -241,7 +241,7 @@ def components_add(request):
 def specifications_add(request):
     user = request.user
     if request.method == 'POST':  # If the form has been submitted...
-        form = AddSpecification(request.POST)  # A form bound to the POST data
+        form = AddSpecification(user,request.POST)  # A form bound to the POST data
         if form.is_valid():  # All validation rules pass
             form.save()
             return HttpResponseRedirect('/specifications/')  # Redirect after POST

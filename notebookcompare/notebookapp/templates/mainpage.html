@@ -10,12 +10,14 @@
 {% else %}
 	<h2> Welcome {% if user.username %}{{ user.username }}{% else %}Guest{% endif %} to our notebookcompare application!</h2>
 	<h3>With this app you can:</h3>
+	<li><a href="/brands/add/">Add a new brand</a></li>
 	<li><a href="/brands/">View a list with all our brands </a></li>
 	<li><a href="/brands/view/ASUS">View the brand details (for example ASUS) </a></li>
 	<li><a href="/brands/view/ASUS/models/">View all the brand notebook models (for example ASUS) </a></li>
 	</br>
+	<li><a href="/models/add/">Add a new model </a></li>	
 	<li><a href="/models/">View a list with all our models </a></li>
-	<li><a href="/models/view/Z930">View the notebook details details (for example Z930) </a></li>
+	<li><a href="/models/view/1">View the notebook details details (for example Z930) </a></li>
 	</li>
 	</br>
 	<li><a href="/components/">View a list with all the components avaible and search your notebook trough the list </a></li>
@@ -35,12 +37,12 @@
 	<li><a href="/review/3/add">Add Review a model </a></li>
 	<li><a href="/review/1/view">View a list of reviews of a model </a></li>
 	<li><a href="/review/view/3/">View a review </a></li>
-	<li><a href="/models/add/">Add a new model </a></li>	
+
 	<li><a href="/components/add/">Add a new component </a></li>
 	<li><a href="/specifications/add/">Add a new specification</a></li>
 	<li><a href="/specifications/edit/16">EDIT specification</a></li>
 	
-	<li><a href="/brands/add/">Add a new brand</a></li>
+
 	<li><a href="/review/delete/1">Delete a review </a></li>
 
         <li><a href="/review/edit/1">Modify a review </a></li>
