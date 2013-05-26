@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 
 {% block content %}
 
@@ -7,7 +7,7 @@
 		
 
 		{% for component in spec %}
-			{{ component.component }}  {{ component.name }} <a href="/specifications/view/{{component.id}}"> Search by this specification</a></br>
+			{{ component.component }}  {{ component.name }} <a href="/specifications/view/{{component.id}}"> Search by this specification</a> <a href="/specifications/edit/{{ component.id }}"><img src="{% static "imatges/pencil.png" %}" width="20"></img></a> </br>
 			
 		{% endfor %}
 		</br>

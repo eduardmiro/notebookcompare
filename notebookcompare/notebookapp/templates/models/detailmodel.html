@@ -9,7 +9,7 @@
 	
 		<center>
 		{% if pictureurl|length > 0 %}
-			<img src="{{ pictureurl }}" align="right"> </img>
+			<img src="{{ pictureurl }}" width ="500" align="right"> </img>
 		{% endif %}
 
 		<h2>{{ brand }}  {{ name }}</h2> 
@@ -18,7 +18,7 @@
 		
 		Price: <b>{{ price }} € </b></br>
 		Date of launchment: {{ date }} </br></br>
-		Added by: {{ useradd }} </br></br>
+		Added by: {{ user }} </br></br>
 		<table>
 		<th>Specifications:</th>
 		

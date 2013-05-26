@@ -37,6 +37,10 @@ class AddComponent(ModelForm):
         self.fields['user'].label = "Added by:"
     class Meta:
         model = Component
+class EditComponent(ModelForm):
+    class Meta:
+        model = Component
+	exclude = ('user')
 
 class AddSpecification(ModelForm):
     def __init__(self, user, *args, **kwargs):
@@ -46,6 +50,11 @@ class AddSpecification(ModelForm):
         self.fields['user'].label = "Added by:"
     class Meta:
         model = Specification
+
+class EditSpecification(ModelForm):
+    class Meta:
+        model = Specification
+	exclude = ('user')
 
 class AddBrand(ModelForm):
     def __init__(self, user, *args, **kwargs):

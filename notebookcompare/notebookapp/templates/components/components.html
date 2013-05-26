@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 
 {% block content %}
 
@@ -9,7 +9,7 @@
 <p> Select which component you want to search by </p>
 	{% for name in all_components %}
 
-		<a href="/components/view/{{ name.pk }}">{{ name }}</a> </br>
+		<a href="/components/view/{{ name.pk }}">{{ name }}</a> <a href="/components/edit/{{ name.pk }}"><img src="{% static "imatges/pencil.png" %}" width="20"></img></a></br>
 
 	{% endfor %}
 

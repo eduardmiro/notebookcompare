@@ -36,14 +36,14 @@ urlpatterns = patterns('',
     url(r'^components/$', components , name='components'),
     url(r'^components/view/(?P<pk>\d+)/$', component_detail , name='Component Detail'),
     url(r'^components/add/$', components_add , name='add component'),
-    url(r'^components/edit/(?P<pk>\d+)/$',UpdateView.as_view(model = Component,template_name = 'add_form.html',form_class = AddComponent),name='Component Edit'),
+    url(r'^components/edit/(?P<pk>\d+)/$',UpdateView.as_view(model = Component,template_name = 'add_form.html',form_class = EditComponent,success_url="/components/"),name='Component Edit'),
 
 
 	#Specifications
     url(r'^specifications/$', specifications_detail_all , name='Specification Detail all'),
     url(r'^specifications/view/(?P<spec_id>\w+)/$', specifications_list , name='specifications list'),
     url(r'^specifications/add/$', specifications_add , name='add specification'),
-    url(r'^specifications/edit/(?P<pk>\d+)/$',UpdateView.as_view(model = Specification,template_name = 'add_form.html',form_class = AddSpecification),name='Specifications Edit'),
+    url(r'^specifications/edit/(?P<pk>\d+)/$',UpdateView.as_view(model = Specification,template_name = 'add_form.html',form_class = EditSpecification,success_url="/specifications/"),name='Specifications Edit'),
 
 	#login user
 
