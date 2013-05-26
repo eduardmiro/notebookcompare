@@ -88,7 +88,7 @@ def model_detail(request, pk):
 			  'id' : model.pk,
 			  'name' : model.name ,
 			  'date' : model.date ,
-		          'useradd' : model.useradd,
+		          'user' : model.user,
                           'price' : model.price ,
 			  'brand' : model.brand,
 			  'spec':specs,
@@ -226,16 +226,16 @@ def model_add(request):
 
 @login_required
 def components_add(request):
-    if request.method == 'POST':  # If the form has been submitted...
-        form = AddComponent(request.POST)  # A form bound to the POST data
-        if form.is_valid():  # All validation rules pass
-            form.save()
-            return HttpResponseRedirect('/components/')  # Redirect after POST
-    else:
-        form = AddComponent()  # An unbound form
-    param = { 'titlehead' : "Add component Form",
-			  'form':form	}
-    return render(request, 'add_form.html', param , context_instance=RequestContext(request))
+	user = request.user
+	if request.method == 'POST':  # If the form has been submitted...
+		form = AddComponent(request.POST)  # A form bound to the POST data
+		if form.is_valid():  # All validation rules pass
+			form.save()
+			return HttpResponseRedirect('/components/')  # Redirect after POST
+	else:
+		form = AddComponent(user)  # An unbound form
+	param = { 'titlehead' : "Add component Form", 'form':form	}
+	return render(request, 'add_form.html', param , context_instance=RequestContext(request))
 
 @login_required
 def specifications_add(request):
@@ -246,7 +246,7 @@ def specifications_add(request):
             form.save()
             return HttpResponseRedirect('/specifications/')  # Redirect after POST
     else:
-        form = AddSpecification()  # An unbound form
+        form = AddSpecification(user)  # An unbound form
     param = { 'titlehead' : "Add Specification Form",
 			  'form':form	}
     return render(request, 'add_form.html', param , context_instance=RequestContext(request))
@@ -283,7 +283,7 @@ def mylaptops(request):
 		user = request.user
 		param = { 'titlehead' : "Your Laptops",
 			  	}
-		query = Model.objects.filter(useradd=user.pk)
+		query = Model.objects.filter(user=user.pk)
 		param['all_models'] = query
 		print param
 		
@@ -317,7 +317,7 @@ def models_delete(request, pk):
 	      'state': "Model deleted!"}
     user = request.user
 
-    if model.useradd.pk != user.pk:
+    if model.user.pk != user.pk:
         return render_to_response('mainpage.html', param, context_instance=RequestContext(request))
     model.delete()
     return render_to_response('mainpage.html', param2, context_instance=RequestContext(request))

@@ -10,11 +10,13 @@ class Brand(models.Model):
 	country = models.CharField(max_length=30)
 	web = models.CharField(max_length=100)
 	pictureurl = models.CharField(max_length=100)
+	user = models.ForeignKey(User)
 	def __unicode__ (self):
 		return self.name
 
 class Component(models.Model):
 	name = models.CharField(max_length=30)
+	user = models.ForeignKey(User)
 	def __unicode__ (self):
 		return self.name
 
