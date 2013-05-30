@@ -84,7 +84,7 @@ def model_detail(request, pk):
 		model = Model.objects.get(pk=pk)
 		review = Review.objects.filter(model=model.pk)
 		specs = model.specification.all()
-		param = { 'titlehead' : "Model Details",
+		param = { 'titlehead' : "Model Details - "+ model.name,
 			  'id' : model.pk,
 			  'name' : model.name ,
 			  'date' : model.date ,
