@@ -6,56 +6,53 @@
 {% load staticfiles %}
 {% block content %}
 
-
+<!-- START RDFA Model -->
 <div prefix="
   rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
   foaf: http://xmlns.com/foaf/0.1/
   gr: http://purl.org/goodrelations/v1#
   xsd: http://www.w3.org/2001/XMLSchema#"
-  typeof="gr:ProductOrService">
   <div>
-
+<div vocab="http://schema.org/" typeof="Product">
 	
 		<center>
 		{% if pictureurl|length > 0 %}
 			 <div rel="foaf:img"><img src="{{ pictureurl }}" width ="500" align="right"> </img></div>
 		{% endif %}
 
-		<h2 property="gr:name">{{ brand }} {{ name }}</h2></span></h2> 
+		<h2 property="name">{{ brand }} {{ name }}</h2></span></h2> 
 		Brand:  <a href="/brands/view/{{ brand }}">  
-		<span itemprop="manufacturer">{{ brand }}  </span> </a>  <a rel="foaf:page" href="http://{{ brand.web }}">Brand Website</a> </br>
-		Model: <span itemprop="model">{{ name }}</span></br>
+		<span property="brand">{{ brand }}  </span> </a>  <a rel="foaf:Brand_Page" href="http://{{ brand.web }}">Brand Website</a> 			</br>
+		Model: <span property="model">{{ name }}</span></br>
+		Date of launchment: {{ date }}</br></br>
+		Added by: <span property="gr:author"> {{ user }}</span> </br></br>
+
+
+			<div property="aggregateRating"
+			    typeof="AggregateRating">
+			    <span property="ratingValue">{{reviewrating.rating__avg}}</span>
+			    out of <span property="bestRating">{{ RATING_CHOICES.4.0 }}</span>
+			    based on <span property="ratingCount">{{ review|length }}</span> user ratings
+			  </div>
+
+<!-- START Price RDFA -->
 
       <span property="gr:hasPriceSpecification" typeof="gr:UnitPriceSpecification">
-      <span property="gr:hasCurrency" content="EUR">€</span>
-      Price: <b><span property="gr:hasCurrencyValue" datatype="xsd:float">{{ price }}</span></b></br>
-    </span>
-
-
-		Date of launchment: {{ date }}</br></br>
-		Added by: {{ user }} </br></br>
-
-	<table>
+      Price: <b><span property="gr:hasCurrencyValue" datatype="xsd:float">{{ price }}</span>    <span property="gr:hasCurrency" content="EUR">€</span></span></b></br>
+ <!-- FINISH RDFA PRICE -->   
+		<div>
+		<table>
 		<th>Specifications:</th>
 		
 		{% for name in spec %}
-			<tr><td><span property="gr:description">{{ name }} </span></td></tr>
+			<tr><td><span property="description">{{ name }} </span></td></tr>
 			
 		{% endfor %}
 		
 		
 		</table>
+		</div>
 		</br>
-
-
-
-   
-  </div>
-</div>
-
-
-	
-	
 		<a href="/brands/view/{{ brand }}/models/"> Other {{ brand }} Model </a>
 		</br>
 
@@ -65,32 +62,48 @@
 		</br>
 		</center>
 
-<table id="flex1" width="auto" style="display:none">
+	<table id="flex1" width="auto" style="display:none">
 		<thead>
 			<tr>
 				<th width="100">User</th>
 				<th width="100">Date</th>
-				<th width="100">Rating</th>
 				<th width="300">Comment</th>
+				<th width="100">Rating</th>
 				<th width="100">Price found</th>
 				<th width="100">Shop Name</th>
 				<th width="100">View</th>
 			</tr>
 		</thead>
+	
+		
+
+
+
 		{% for review in review %}
 
+
 			<tr>
-			<td>{{ review.user }} </td>
-			<td>{{ review.date }} </td>
-			<td>{{ review.rating }} </td>
-			<td>{{ review.comment }} </td>
+			<div vocab="http://rdf.data-vocabulary.org/#" typeof="Review">
+			<td><span property="author">{{ review.user }}</span> </td>
+			<td><meta property="datePublished" content="{{ review.date }}">{{ review.date }}</td>
+ 		        <td><span property="description">{{ review.comment }}</td>
+			 <td><span property="rating">{{ review.rating }}</span></td>
+			  </div>
+			</div>
+			  
 			<td>{{ review.price_found }} </td>
 			<td>{{ review.shop_name }} </td>
 			<td><a href="/review/view/{{ review.pk }}"><img src="{% static "imatges/lupa.png" %}" width="30"></img></a> </td></tr>
-			
+ 			
 		{% endfor %}
-</table>
+
+
+		</table>
 </div>
+</span> <!-- Final RDFA Model -->
+
+
+
        <script type="text/javascript">
 $("#flex1").flexigrid({width:'auto',height:'auto'});
 

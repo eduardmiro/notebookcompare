@@ -15,6 +15,7 @@ from django.views.generic.edit import UpdateView
 from forms import *
 from notebookapp.models import *
 from django.http import Http404
+from django.db.models import Avg
 
 from rest_framework import generics, permissions
 from serializers import BrandSerializer, ComponentSerializer, SpecificationSerializer, ModelSerializer
@@ -83,6 +84,7 @@ def model_detail(request, pk):
    		
 		model = Model.objects.get(pk=pk)
 		review = Review.objects.filter(model=model.pk)
+		reviewrating = Review.objects.filter(model=model.pk).aggregate(Avg('rating'))
 		specs = model.specification.all()
 		param = { 'titlehead' : "Model Details - "+ model.name,
 			  'id' : model.pk,
@@ -94,6 +96,7 @@ def model_detail(request, pk):
 			  'spec':specs,
                           'pictureurl' : model.pictureurl,
 			  'review' : review,
+			  'reviewrating' : reviewrating,
 			  'RATING_CHOICES' : Review.RATING_CHOICES }
 
 	except:
