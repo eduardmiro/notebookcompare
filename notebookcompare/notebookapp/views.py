@@ -93,7 +93,8 @@ def model_detail(request, pk):
 			  'brand' : model.brand,
 			  'spec':specs,
                           'pictureurl' : model.pictureurl,
-			  'review' : review }
+			  'review' : review,
+			  'RATING_CHOICES' : Review.RATING_CHOICES }
 
 	except:
        	 raise Http404

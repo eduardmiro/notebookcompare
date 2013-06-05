@@ -12,13 +12,13 @@
   foaf: http://xmlns.com/foaf/0.1/
   gr: http://purl.org/goodrelations/v1#
   xsd: http://www.w3.org/2001/XMLSchema#"
-  typeof="gr:Offering">
+  typeof="gr:ProductOrService">
   <div>
 
 	
 		<center>
 		{% if pictureurl|length > 0 %}
-			 <div rel="foaf:depiction"><img src="{{ pictureurl }}" width ="500" align="right"> </img></div>
+			 <div rel="foaf:img"><img src="{{ pictureurl }}" width ="500" align="right"> </img></div>
 		{% endif %}
 
 		<h2 property="gr:name">{{ brand }} {{ name }}</h2></span></h2> 
@@ -32,7 +32,7 @@
     </span>
 
 
-		Date of launchment: <span itemprop="gr:releaseDate">{{ date }}</span> </br></br>
+		Date of launchment: {{ date }}</br></br>
 		Added by: {{ user }} </br></br>
 
 	<table>
