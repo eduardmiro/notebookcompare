@@ -12,7 +12,7 @@
   foaf: http://xmlns.com/foaf/0.1/
   gr: http://purl.org/goodrelations/v1#
   xsd: http://www.w3.org/2001/XMLSchema#"
-  <div>
+
 <div vocab="http://schema.org/" typeof="Product">
 	
 		<center>
@@ -35,11 +35,12 @@
 			    based on <span property="ratingCount">{{ review|length }}</span> user ratings
 			  </div>
 
-<!-- START Price RDFA -->
+		<!-- START Price RDFA -->
 
-      <span property="gr:hasPriceSpecification" typeof="gr:UnitPriceSpecification">
-      Price: <b><span property="gr:hasCurrencyValue" datatype="xsd:float">{{ price }}</span>    <span property="gr:hasCurrency" content="EUR">€</span></span></b></br>
- <!-- FINISH RDFA PRICE -->   
+ 		     <span property="gr:hasPriceSpecification" typeof="gr:UnitPriceSpecification">
+  			 Price: <b><span property="gr:hasCurrencyValue" datatype="xsd:float">{{ price }}</span>    
+			<span property="gr:hasCurrency" content="EUR">€</span><span></b></br>
+ 		<!-- FINISH RDFA PRICE -->   
 		<div>
 		<table>
 		<th>Specifications:</th>
@@ -62,45 +63,26 @@
 		</br>
 		</center>
 
-	<table id="flex1" width="auto" style="display:none">
-		<thead>
-			<tr>
-				<th width="100">User</th>
-				<th width="100">Date</th>
-				<th width="300">Comment</th>
-				<th width="100">Rating</th>
-				<th width="100">Price found</th>
-				<th width="100">Shop Name</th>
-				<th width="100">View</th>
-			</tr>
-		</thead>
-	
-		
-
+	<h1> User Reviews:</h1>
 
 
 		{% for review in review %}
 
 
-			<tr>
-			<div vocab="http://rdf.data-vocabulary.org/#" typeof="Review">
-			<td><span property="author">{{ review.user }}</span> </td>
-			<td><meta property="datePublished" content="{{ review.date }}">{{ review.date }}</td>
- 		        <td><span property="description">{{ review.comment }}</td>
-			 <td><span property="rating">{{ review.rating }}</span></td>
-			  </div>
-			</div>
-			  
-			<td>{{ review.price_found }} </td>
-			<td>{{ review.shop_name }} </td>
+ 			 <li typeof="Review">
+			<td><span property="description">{{ review.comment }}</span> by </td>
+			<td><span property="author">{{ review.user }}</span> on </td>
+			<td><span property="publishDate">{{ review.date }}</span> left </td>
+			 <td><span property="rating">{{ review.rating }}</span> Stars</td>
 			<td><a href="/review/view/{{ review.pk }}"><img src="{% static "imatges/lupa.png" %}" width="30"></img></a> </td></tr>
- 			
+		    	</li>
+
+				
+
 		{% endfor %}
-
-
 		</table>
 </div>
-</span> <!-- Final RDFA Model -->
+
 
 
 
