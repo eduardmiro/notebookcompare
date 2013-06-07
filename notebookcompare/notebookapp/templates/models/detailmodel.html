@@ -30,6 +30,15 @@
  		     <span property="gr:hasPriceSpecification" typeof="gr:UnitPriceSpecification">
   			 Price: <b><span property="gr:hasCurrencyValue" datatype="xsd:float">{{ price }}</span>    
 			<span property="gr:hasCurrency" content="EUR">€</span></span></b></br>
+
+	<span property="description">
+		
+		{% for name in spec %}
+			{{ name }}</br>
+		{% endfor %}
+		 </span>
+
+
  	<!-- FINISH model rdfa info --> 
 
 		</br>
