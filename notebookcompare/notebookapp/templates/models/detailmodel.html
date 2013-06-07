@@ -6,53 +6,32 @@
 {% load staticfiles %}
 {% block content %}
 
-<!-- START RDFA Model -->
 <div prefix="
   rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
   foaf: http://xmlns.com/foaf/0.1/
   gr: http://purl.org/goodrelations/v1#
   xsd: http://www.w3.org/2001/XMLSchema#"
 
-<div vocab="http://schema.org/" typeof="Product">
-	
-		<center>
+
+<div id="content">
+<span vocab="http://schema.org/" typeof="Product">
+<h1>
+    <span property="name">{{ brand }} {{ name }}</span>
+</h1>
+	<!-- START Model RDFA info-->
 		{% if pictureurl|length > 0 %}
 			 <div rel="foaf:img"><img src="{{ pictureurl }}" width ="500" align="right"> </img></div>
 		{% endif %}
-
-		<h2 property="name">{{ brand }} {{ name }}</h2></span></h2> 
-		Brand:  <a href="/brands/view/{{ brand }}">  
-		<span property="brand">{{ brand }}  </span> </a>  <a rel="foaf:Brand_Page" href="http://{{ brand.web }}">Brand Website</a> 			</br>
+		Brand:  <span property="brand">{{ brand }}  </span>  <a href="/brands/view/{{ brand }}">Brand Details  </a>  <a rel="foaf:Brand_Page" href="http://{{ brand.web }}">Brand Website</a> 			</br>
 		Model: <span property="model">{{ name }}</span></br>
 		Date of launchment: {{ date }}</br></br>
 		Added by: <span property="gr:author"> {{ user }}</span> </br></br>
 
-
-			<div property="aggregateRating"
-			    typeof="AggregateRating">
-			    <span property="ratingValue">{{reviewrating.rating__avg}}</span>
-			    out of <span property="bestRating">{{ RATING_CHOICES.4.0 }}</span>
-			    based on <span property="ratingCount">{{ review|length }}</span> user ratings
-			  </div>
-
-		<!-- START Price RDFA -->
-
  		     <span property="gr:hasPriceSpecification" typeof="gr:UnitPriceSpecification">
   			 Price: <b><span property="gr:hasCurrencyValue" datatype="xsd:float">{{ price }}</span>    
-			<span property="gr:hasCurrency" content="EUR">€</span><span></b></br>
- 		<!-- FINISH RDFA PRICE -->   
-		<div>
-		<table>
-		<th>Specifications:</th>
-		
-		{% for name in spec %}
-			<tr><td><span property="description">{{ name }} </span></td></tr>
-			
-		{% endfor %}
-		
-		
-		</table>
-		</div>
+			<span property="gr:hasCurrency" content="EUR">€</span></span></b></br>
+ 	<!-- FINISH model rdfa info --> 
+
 		</br>
 		<a href="/brands/view/{{ brand }}/models/"> Other {{ brand }} Model </a>
 		</br>
@@ -63,46 +42,45 @@
 		</br>
 		</center>
 
-	<h1> User Reviews:</h1>
+<!-- START Review RDFA info-->
+<h2>Reviews</h2>
+<span rel="aggregateRating">
+    <p typeof="AggregateRating">
+        Average rating <span property="ratingValue">{{reviewrating.rating__avg}}</span> out of <span property="bestRating">{{ RATING_CHOICES.4.0 }}</span>
+        from <span property="reviewCount">{{ review|length }}</span> reviews
+    </p>
+</span>
 
 
+
+
+<ul rel="review">
+      
+       
 		{% for review in review %}
 
+			<li typeof="Review">
+            <p rel="reviewRating" typeof="Rating">
+                <span property="worstRating" content="{{ RATING_CHOICES.0.0 }}"></span>
+                <span property="ratingValue">{{ review.rating }}</span> stars
+                <span property="bestRating" content="{{ RATING_CHOICES.4.0 }}"></span>
+            </p>
+            <p property="description">{{ review.comment }}</p>
+            <p>Created by <span property="author">{{ review.user }}</span> on
+                <span property="publishDate">{{ review.date }}</span></p> 
+							<a href="/review/view/{{ review.pk }}"><img src="{% static "imatges/lupa.png" %}" width="30"></img></a>
 
- 			 <li typeof="Review">
-			<td><span property="description">{{ review.comment }}</span> by </td>
-			<td><span property="author">{{ review.user }}</span> on </td>
-			<td><span property="publishDate">{{ review.date }}</span> left </td>
-			 <td><span property="rating">{{ review.rating }}</span> Stars</td>
-			<td><a href="/review/view/{{ review.pk }}"><img src="{% static "imatges/lupa.png" %}" width="30"></img></a> </td></tr>
-		    	</li>
-
-				
+        </li>
+ 	
 
 		{% endfor %}
-		</table>
+</ul>
+
+ 	<!-- FINISH review rdfa info --> 
+
+</span>
 </div>
-
-
-
-
-       <script type="text/javascript">
-$("#flex1").flexigrid({width:'auto',height:'auto'});
-
-//This function adds paramaters to the post of flexigrid. You can add a verification as well by return to false if you don't want flexigrid to submit			
-function addFormData(){
-	//passing a form object to serializeArray will get the valid data from all the objects, but, if the you pass a non-form object, you have to specify the input elements that the data will come from
-	var dt = $('#sform').serializeArray();
-	$("#flex1").flexOptions({params: dt});
-	return true;
-}
-
-$('#sform').submit(function (){
-	$('#flex1').flexOptions({newp: 1}).flexReload();
-	return false;
-});
-</script>                  
-                      
+</div>
 
 {% endblock %}
 
